@@ -14,7 +14,6 @@
 		C299774C1DE0CA40008E7F7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C299774A1DE0CA40008E7F7A /* LaunchScreen.storyboard */; };
 		C29977571DE0CA40008E7F7A /* HowToTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29977561DE0CA40008E7F7A /* HowToTests.swift */; };
 		C29977621DE0CA40008E7F7A /* HowToUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29977611DE0CA40008E7F7A /* HowToUITests.swift */; };
-		C29977701DE0CB5B008E7F7A /* UserStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C299776F1DE0CB5B008E7F7A /* UserStoryboard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +47,6 @@
 		C299775D1DE0CA40008E7F7A /* HowToUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HowToUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C29977611DE0CA40008E7F7A /* HowToUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToUITests.swift; sourceTree = "<group>"; };
 		C29977631DE0CA40008E7F7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C299776F1DE0CB5B008E7F7A /* UserStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserStoryboard.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +103,6 @@
 				C29977481DE0CA40008E7F7A /* Assets.xcassets */,
 				C299774A1DE0CA40008E7F7A /* LaunchScreen.storyboard */,
 				C299774D1DE0CA40008E7F7A /* Info.plist */,
-				C299776F1DE0CB5B008E7F7A /* UserStoryboard.storyboard */,
 			);
 			path = HowTo;
 			sourceTree = "<group>";
@@ -235,7 +232,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C29977701DE0CB5B008E7F7A /* UserStoryboard.storyboard in Resources */,
 				C299774C1DE0CA40008E7F7A /* LaunchScreen.storyboard in Resources */,
 				C29977491DE0CA40008E7F7A /* Assets.xcassets in Resources */,
 				C29977471DE0CA40008E7F7A /* Main.storyboard in Resources */,
