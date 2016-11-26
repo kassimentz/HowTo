@@ -204,6 +204,7 @@
 				TargetAttributes = {
 					C299773D1DE0CA3F008E7F7A = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 3KXL7F2ZKT;
 						ProvisioningStyle = Automatic;
 					};
 					C29977511DE0CA40008E7F7A = {
@@ -424,6 +425,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 3KXL7F2ZKT;
 				INFOPLIST_FILE = HowTo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.howto.HowTo;
@@ -436,6 +438,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 3KXL7F2ZKT;
 				INFOPLIST_FILE = HowTo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.howto.HowTo;
