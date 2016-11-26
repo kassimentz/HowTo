@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TutorialsListTableViewController: UITableViewController {
+class TutorialsListTableViewController: UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate {
     
 
     override func viewDidLoad() {
