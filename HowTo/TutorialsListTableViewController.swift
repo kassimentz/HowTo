@@ -8,13 +8,34 @@
 
 import UIKit
 
-class TutorialsListTableViewController: UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate {
+class TutorialsListTableViewController: UITableViewController {
+    
+    
+    // MARK: - Properties
+    //var detailViewController: DetailViewController? = nil
+    var tutorials = [Tutorial]()
+    var filteredTutorials = [Tutorial]()
+    let searchController = UISearchController(searchResultsController: nil)
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Setup the Search Controller
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        definesPresentationContext = true
+        searchController.dimsBackgroundDuringPresentation = false
+        tableView.tableHeaderView = searchController.searchBar
+        
         self.title = "Tutoriais"
+        
+        populateTutorialsList()
+        
+//        if let splitViewController = splitViewController {
+//            let controllers = splitViewController.viewControllers
+//            detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
+//        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -22,6 +43,21 @@ class TutorialsListTableViewController: UITableViewController, UISearchBarDelega
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    
+    func populateTutorialsList(){
+        tutorials = [
+            Tutorial(title:"titulo1", textDescription: "textDescription1", image: #imageLiteral(resourceName: "Play Filled-100")),
+            Tutorial(title:"titulo2", textDescription: "textDescription2", image: #imageLiteral(resourceName: "Play Filled-100")),
+            Tutorial(title:"titulo3", textDescription: "textDescription3", image: #imageLiteral(resourceName: "Play Filled-100")),
+            Tutorial(title:"titulo4", textDescription: "textDescription4", image: #imageLiteral(resourceName: "Play Filled-100")),
+            Tutorial(title:"titulo5", textDescription: "textDescription5", image: #imageLiteral(resourceName: "Play Filled-100"))
+        ]
+    }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
+//        super.viewWillAppear(animated)
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -30,25 +66,36 @@ class TutorialsListTableViewController: UITableViewController, UISearchBarDelega
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 10
+        if searchController.isActive && searchController.searchBar.text != "" {
+            return filteredTutorials.count
+        }
+        return tutorials.count
     }
-
-   
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tutorialCell", for: indexPath)
-
-        // Configure the cell...
-
+        let tutorial: Tutorial
+        if searchController.isActive && searchController.searchBar.text != "" {
+            tutorial = filteredTutorials[indexPath.row]
+        } else {
+            tutorial = tutorials[indexPath.row]
+        }
+        cell.textLabel?.text = tutorial.title
+        //cell.detailTextLabel!.text = tutorial.textDescription
         return cell
     }
-   
+
+    
+    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+        filteredTutorials = tutorials.filter({( tutorial : Tutorial) -> Bool in
+            //let categoryMatch = (scope == "All") || (candy.category == scope)
+            return (tutorial.title?.lowercased().contains(searchText.lowercased()))!
+        })
+        tableView.reloadData()
+    }
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -95,4 +142,20 @@ class TutorialsListTableViewController: UITableViewController, UISearchBarDelega
     }
     */
 
+}
+
+extension TutorialsListTableViewController: UISearchBarDelegate {
+    // MARK: - UISearchBar Delegate
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
+    }
+}
+
+extension TutorialsListTableViewController: UISearchResultsUpdating {
+    // MARK: - UISearchResultsUpdating Delegate
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
+        filterContentForSearchText(searchController.searchBar.text!, scope: scope)
+    }
 }
