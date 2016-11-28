@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TutorialsListTableViewController: UITableViewController {
+class TutorialsListTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating {
     
     
     // MARK: - Properties
@@ -88,12 +88,22 @@ class TutorialsListTableViewController: UITableViewController {
     }
 
     
-    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+    func filterContentForSearchText(_ searchText: String) {
         filteredTutorials = tutorials.filter({( tutorial : Tutorial) -> Bool in
-            //let categoryMatch = (scope == "All") || (candy.category == scope)
             return (tutorial.title?.lowercased().contains(searchText.lowercased()))!
         })
         tableView.reloadData()
+    }
+    
+    // MARK: - UISearchBar Delegate
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        filterContentForSearchText(searchBar.text!)
+    }
+    
+    // MARK: - UISearchResultsUpdating Delegate
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        filterContentForSearchText(searchBar.text!)
     }
     
 
@@ -142,20 +152,4 @@ class TutorialsListTableViewController: UITableViewController {
     }
     */
 
-}
-
-extension TutorialsListTableViewController: UISearchBarDelegate {
-    // MARK: - UISearchBar Delegate
-    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
-    }
-}
-
-extension TutorialsListTableViewController: UISearchResultsUpdating {
-    // MARK: - UISearchResultsUpdating Delegate
-    func updateSearchResults(for searchController: UISearchController) {
-        let searchBar = searchController.searchBar
-        let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
-        filterContentForSearchText(searchController.searchBar.text!, scope: scope)
-    }
 }
