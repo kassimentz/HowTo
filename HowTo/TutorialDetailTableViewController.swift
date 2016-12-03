@@ -17,8 +17,20 @@ class TutorialDetailTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        steps = tutorial?.steps
-        user = tutorial?.user
+        
+        if(tutorial?.steps == nil) {
+            steps = [Steps]()
+        } else {
+            steps = tutorial?.steps
+        }
+        
+        if(tutorial?.user == nil) {
+            user = User()
+        } else {
+            user = tutorial?.user
+        }
+        
+        tableView.estimatedRowHeight = 200
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -40,7 +52,6 @@ class TutorialDetailTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         if(section == 0) {
             return 1;
         } else {
@@ -76,6 +87,8 @@ class TutorialDetailTableViewController: UITableViewController {
         }
         
     }
+    
+    
     
 
     /*
