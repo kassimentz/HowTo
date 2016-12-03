@@ -20,8 +20,8 @@
 		CB6CE4FB1DF2F3A900A34526 /* TutorialCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CE4FA1DF2F3A900A34526 /* TutorialCellTableViewCell.swift */; };
 		CB6CE4FD1DF2F9D300A34526 /* TutorialDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CE4FC1DF2F9D300A34526 /* TutorialDetailTableViewController.swift */; };
 		CB6CE4FF1DF3030F00A34526 /* TutorialDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CE4FE1DF3030F00A34526 /* TutorialDetailTableViewCell.swift */; };
-		CB6CE5021DF303DF00A34526 /* StepsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CE5011DF303DF00A34526 /* StepsTableViewCell.swift */; };
-		CB6CE5041DF32F2300A34526 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CE5031DF32F2300A34526 /* User.swift */; };
+		CB6CE5091DF339FE00A34526 /* StepsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CE5081DF339FE00A34526 /* StepsTableViewCell.swift */; };
+		CB6CE50B1DF33A5500A34526 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CE50A1DF33A5500A34526 /* User.swift */; };
 		CBAC85011DEA022500B36864 /* TutorialsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAC85001DEA022500B36864 /* TutorialsListTableViewController.swift */; };
 		D086B9DA1DF331D100F42EB0 /* StepDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086B9D91DF331D100F42EB0 /* StepDetailViewController.swift */; };
 /* End PBXBuildFile section */
@@ -64,8 +64,8 @@
 		CB6CE4FA1DF2F3A900A34526 /* TutorialCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialCellTableViewCell.swift; sourceTree = "<group>"; };
 		CB6CE4FC1DF2F9D300A34526 /* TutorialDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialDetailTableViewController.swift; sourceTree = "<group>"; };
 		CB6CE4FE1DF3030F00A34526 /* TutorialDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialDetailTableViewCell.swift; sourceTree = "<group>"; };
-		CB6CE5011DF303DF00A34526 /* StepsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsTableViewCell.swift; sourceTree = "<group>"; };
-		CB6CE5031DF32F2300A34526 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CB6CE5081DF339FE00A34526 /* StepsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsTableViewCell.swift; sourceTree = "<group>"; };
+		CB6CE50A1DF33A5500A34526 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CBAC85001DEA022500B36864 /* TutorialsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialsListTableViewController.swift; sourceTree = "<group>"; };
 		D086B9D91DF331D100F42EB0 /* StepDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,6 +120,7 @@
 		C29977401DE0CA40008E7F7A /* HowTo */ = {
 			isa = PBXGroup;
 			children = (
+				CB6CE5051DF3393F00A34526 /* steps */,
 				D086B9D81DF331B000F42EB0 /* step */,
 				CBAC84FF1DEA020200B36864 /* tutorial */,
 				C724AF381DE9FC5100E7D6A4 /* Model */,
@@ -165,15 +166,15 @@
 			children = (
 				C724AF391DE9FC6200E7D6A4 /* Steps.swift */,
 				C724AF3A1DE9FC6200E7D6A4 /* Tutorial.swift */,
-				CB6CE5031DF32F2300A34526 /* User.swift */,
+				CB6CE50A1DF33A5500A34526 /* User.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
 		};
-		CB6CE5001DF303C700A34526 /* steps */ = {
+		CB6CE5051DF3393F00A34526 /* steps */ = {
 			isa = PBXGroup;
 			children = (
-				CB6CE5011DF303DF00A34526 /* StepsTableViewCell.swift */,
+				CB6CE5081DF339FE00A34526 /* StepsTableViewCell.swift */,
 			);
 			name = steps;
 			sourceTree = "<group>";
@@ -342,8 +343,9 @@
 				CB6CE4FF1DF3030F00A34526 /* TutorialDetailTableViewCell.swift in Sources */,
 				CB6CE4FD1DF2F9D300A34526 /* TutorialDetailTableViewController.swift in Sources */,
 				C724AF3C1DE9FC6200E7D6A4 /* Tutorial.swift in Sources */,
-				CB6CE5021DF303DF00A34526 /* StepsTableViewCell.swift in Sources */,
 				CB6CE4FB1DF2F3A900A34526 /* TutorialCellTableViewCell.swift in Sources */,
+				CB6CE5091DF339FE00A34526 /* StepsTableViewCell.swift in Sources */,
+				CB6CE50B1DF33A5500A34526 /* User.swift in Sources */,
 				C29977441DE0CA40008E7F7A /* ViewController.swift in Sources */,
 				D086B9DA1DF331D100F42EB0 /* StepDetailViewController.swift in Sources */,
 				C29977421DE0CA40008E7F7A /* AppDelegate.swift in Sources */,
