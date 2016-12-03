@@ -21,6 +21,7 @@
 		CB6CE4FD1DF2F9D300A34526 /* TutorialDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CE4FC1DF2F9D300A34526 /* TutorialDetailTableViewController.swift */; };
 		CB6CE4FF1DF3030F00A34526 /* TutorialDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CE4FE1DF3030F00A34526 /* TutorialDetailTableViewCell.swift */; };
 		CB6CE5021DF303DF00A34526 /* StepsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CE5011DF303DF00A34526 /* StepsTableViewCell.swift */; };
+		CB6CE5041DF32F2300A34526 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CE5031DF32F2300A34526 /* User.swift */; };
 		CBAC85011DEA022500B36864 /* TutorialsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAC85001DEA022500B36864 /* TutorialsListTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		CB6CE4FC1DF2F9D300A34526 /* TutorialDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialDetailTableViewController.swift; sourceTree = "<group>"; };
 		CB6CE4FE1DF3030F00A34526 /* TutorialDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialDetailTableViewCell.swift; sourceTree = "<group>"; };
 		CB6CE5011DF303DF00A34526 /* StepsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsTableViewCell.swift; sourceTree = "<group>"; };
+		CB6CE5031DF32F2300A34526 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CBAC85001DEA022500B36864 /* TutorialsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialsListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,6 +163,7 @@
 			children = (
 				C724AF391DE9FC6200E7D6A4 /* Steps.swift */,
 				C724AF3A1DE9FC6200E7D6A4 /* Tutorial.swift */,
+				CB6CE5031DF32F2300A34526 /* User.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				CB6CE5021DF303DF00A34526 /* StepsTableViewCell.swift in Sources */,
 				CB6CE4FB1DF2F3A900A34526 /* TutorialCellTableViewCell.swift in Sources */,
 				C29977441DE0CA40008E7F7A /* ViewController.swift in Sources */,
+				CB6CE5041DF32F2300A34526 /* User.swift in Sources */,
 				C29977421DE0CA40008E7F7A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

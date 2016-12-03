@@ -12,5 +12,6 @@ class Steps: NSObject {
     
     var text:String?
     var videoURL:String?
+    var image:UIImage?
 
 }
