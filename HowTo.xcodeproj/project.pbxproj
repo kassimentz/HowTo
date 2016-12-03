@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C29977421DE0CA40008E7F7A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29977411DE0CA40008E7F7A /* AppDelegate.swift */; };
-		C29977441DE0CA40008E7F7A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29977431DE0CA40008E7F7A /* ViewController.swift */; };
 		C29977471DE0CA40008E7F7A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C29977451DE0CA40008E7F7A /* Main.storyboard */; };
 		C29977491DE0CA40008E7F7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C29977481DE0CA40008E7F7A /* Assets.xcassets */; };
 		C299774C1DE0CA40008E7F7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C299774A1DE0CA40008E7F7A /* LaunchScreen.storyboard */; };
@@ -46,7 +45,6 @@
 /* Begin PBXFileReference section */
 		C299773E1DE0CA40008E7F7A /* HowTo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HowTo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C29977411DE0CA40008E7F7A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C29977431DE0CA40008E7F7A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C29977461DE0CA40008E7F7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C29977481DE0CA40008E7F7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C299774B1DE0CA40008E7F7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -120,13 +118,10 @@
 		C29977401DE0CA40008E7F7A /* HowTo */ = {
 			isa = PBXGroup;
 			children = (
-				CB6CE5051DF3393F00A34526 /* steps */,
-				D086B9D81DF331B000F42EB0 /* step */,
-				CBAC84FF1DEA020200B36864 /* tutorial */,
 				C724AF381DE9FC5100E7D6A4 /* Model */,
+				D086B9DB1DF33D3C00F42EB0 /* App */,
 				C724AF341DE9FC2B00E7D6A4 /* HowTo.entitlements */,
 				C29977411DE0CA40008E7F7A /* AppDelegate.swift */,
-				C29977431DE0CA40008E7F7A /* ViewController.swift */,
 				C29977451DE0CA40008E7F7A /* Main.storyboard */,
 				C29977481DE0CA40008E7F7A /* Assets.xcassets */,
 				C299774A1DE0CA40008E7F7A /* LaunchScreen.storyboard */,
@@ -171,31 +166,25 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		CB6CE5051DF3393F00A34526 /* steps */ = {
-			isa = PBXGroup;
-			children = (
-				CB6CE5081DF339FE00A34526 /* StepsTableViewCell.swift */,
-			);
-			name = steps;
-			sourceTree = "<group>";
-		};
-		CBAC84FF1DEA020200B36864 /* tutorial */ = {
-			isa = PBXGroup;
-			children = (
-				CBAC85001DEA022500B36864 /* TutorialsListTableViewController.swift */,
-				CB6CE4FA1DF2F3A900A34526 /* TutorialCellTableViewCell.swift */,
-				CB6CE4FC1DF2F9D300A34526 /* TutorialDetailTableViewController.swift */,
-				CB6CE4FE1DF3030F00A34526 /* TutorialDetailTableViewCell.swift */,
-			);
-			name = tutorial;
-			sourceTree = "<group>";
-		};
-		D086B9D81DF331B000F42EB0 /* step */ = {
+		D086B9DB1DF33D3C00F42EB0 /* App */ = {
 			isa = PBXGroup;
 			children = (
 				D086B9D91DF331D100F42EB0 /* StepDetailViewController.swift */,
+				CBAC85001DEA022500B36864 /* TutorialsListTableViewController.swift */,
+				CB6CE4FC1DF2F9D300A34526 /* TutorialDetailTableViewController.swift */,
+				D086B9DC1DF33D4300F42EB0 /* Cell */,
 			);
-			name = step;
+			name = App;
+			sourceTree = "<group>";
+		};
+		D086B9DC1DF33D4300F42EB0 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				CB6CE5081DF339FE00A34526 /* StepsTableViewCell.swift */,
+				CB6CE4FA1DF2F3A900A34526 /* TutorialCellTableViewCell.swift */,
+				CB6CE4FE1DF3030F00A34526 /* TutorialDetailTableViewCell.swift */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,7 +335,6 @@
 				CB6CE4FB1DF2F3A900A34526 /* TutorialCellTableViewCell.swift in Sources */,
 				CB6CE5091DF339FE00A34526 /* StepsTableViewCell.swift in Sources */,
 				CB6CE50B1DF33A5500A34526 /* User.swift in Sources */,
-				C29977441DE0CA40008E7F7A /* ViewController.swift in Sources */,
 				D086B9DA1DF331D100F42EB0 /* StepDetailViewController.swift in Sources */,
 				C29977421DE0CA40008E7F7A /* AppDelegate.swift in Sources */,
 			);
