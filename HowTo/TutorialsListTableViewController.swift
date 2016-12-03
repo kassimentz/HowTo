@@ -83,6 +83,7 @@ class TutorialsListTableViewController: UITableViewController, UISearchBarDelega
             tutorial = tutorials[indexPath.row]
         }
         cell.textLabel?.text = tutorial.title
+        cell.imageView?.image = tutorial.image
         //cell.detailTextLabel!.text = tutorial.textDescription
         return cell
     }
