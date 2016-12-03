@@ -17,6 +17,7 @@
 		C724AF371DE9FC3100E7D6A4 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C724AF361DE9FC3100E7D6A4 /* CloudKit.framework */; };
 		C724AF3B1DE9FC6200E7D6A4 /* Steps.swift in Sources */ = {isa = PBXBuildFile; fileRef = C724AF391DE9FC6200E7D6A4 /* Steps.swift */; };
 		C724AF3C1DE9FC6200E7D6A4 /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = C724AF3A1DE9FC6200E7D6A4 /* Tutorial.swift */; };
+		CB6CE4FB1DF2F3A900A34526 /* TutorialCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CE4FA1DF2F3A900A34526 /* TutorialCellTableViewCell.swift */; };
 		CBAC85011DEA022500B36864 /* TutorialsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAC85001DEA022500B36864 /* TutorialsListTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		C724AF361DE9FC3100E7D6A4 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		C724AF391DE9FC6200E7D6A4 /* Steps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Steps.swift; sourceTree = "<group>"; };
 		C724AF3A1DE9FC6200E7D6A4 /* Tutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutorial.swift; sourceTree = "<group>"; };
+		CB6CE4FA1DF2F3A900A34526 /* TutorialCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialCellTableViewCell.swift; sourceTree = "<group>"; };
 		CBAC85001DEA022500B36864 /* TutorialsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialsListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				CBAC85001DEA022500B36864 /* TutorialsListTableViewController.swift */,
+				CB6CE4FA1DF2F3A900A34526 /* TutorialCellTableViewCell.swift */,
 			);
 			name = tutorial;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				C724AF3B1DE9FC6200E7D6A4 /* Steps.swift in Sources */,
 				CBAC85011DEA022500B36864 /* TutorialsListTableViewController.swift in Sources */,
 				C724AF3C1DE9FC6200E7D6A4 /* Tutorial.swift in Sources */,
+				CB6CE4FB1DF2F3A900A34526 /* TutorialCellTableViewCell.swift in Sources */,
 				C29977441DE0CA40008E7F7A /* ViewController.swift in Sources */,
 				C29977421DE0CA40008E7F7A /* AppDelegate.swift in Sources */,
 			);

@@ -75,15 +75,16 @@ class TutorialsListTableViewController: UITableViewController, UISearchBarDelega
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tutorialCell", for: indexPath)
+        let cell:TutorialCellTableViewCell = tableView.dequeueReusableCell(withIdentifier: "tutorialCell", for: indexPath) as! TutorialCellTableViewCell
         let tutorial: Tutorial
         if searchController.isActive && searchController.searchBar.text != "" {
             tutorial = filteredTutorials[indexPath.row]
         } else {
             tutorial = tutorials[indexPath.row]
         }
-        cell.textLabel?.text = tutorial.title
-        cell.imageView?.image = tutorial.image
+        
+        cell.tutorialDescriptionComponent?.text = tutorial.title
+        cell.tutorialVideoComponent?.image = tutorial.image
         //cell.detailTextLabel!.text = tutorial.textDescription
         return cell
     }
