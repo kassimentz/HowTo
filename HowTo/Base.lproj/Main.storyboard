@@ -215,6 +215,12 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="dkM-wJ-By2" secondAttribute="trailing" constant="10" id="vcO-Xh-Zbf"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="descriptionTutorialDetail" destination="dkM-wJ-By2" id="jen-Dz-jz1"/>
+                                    <outlet property="titleTutorialDetail" destination="fAy-sb-OHW" id="535-j6-MCQ"/>
+                                    <outlet property="tutorialDetailImage" destination="3w2-nY-YMF" id="iHU-DB-lx5"/>
+                                    <outlet property="userProfileDetailImage" destination="R78-R3-9qk" id="Thu-uM-umf"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="108" id="DoF-F7-YXU" customClass="StepsTableViewCell" customModule="HowTo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="326" width="320" height="108"/>
@@ -255,6 +261,11 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="sMi-rP-Yvp" secondAttribute="bottom" constant="10" id="koL-eW-qh5"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="stepsDescriptionDetail" destination="U1I-Rp-Jcu" id="wsF-t8-MtA"/>
+                                    <outlet property="stepsImageDetail" destination="sMi-rP-Yvp" id="d9b-Ka-hNx"/>
+                                    <outlet property="stepsTitleDetail" destination="LbR-gi-68d" id="VFk-Qt-PVN"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

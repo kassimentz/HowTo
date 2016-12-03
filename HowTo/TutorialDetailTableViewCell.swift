@@ -10,15 +10,11 @@ import UIKit
 
 class TutorialDetailTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+    @IBOutlet weak var tutorialDetailImage: UIImageView!
+    @IBOutlet weak var userProfileDetailImage: UIImageView!
+    @IBOutlet weak var titleTutorialDetail: UILabel!
+    @IBOutlet weak var descriptionTutorialDetail: UILabel!
+    
+    
 
 }
