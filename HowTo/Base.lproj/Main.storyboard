@@ -112,6 +112,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="c8l-jF-Ep5"/>
                     <connections>
+                        <outlet property="labelDescricaoVideo" destination="rXq-4h-Crz" id="Gce-PY-hkd"/>
                         <outlet property="viewVideo" destination="CMu-hh-wJW" id="Mmc-pL-aEF"/>
                     </connections>
                 </viewController>
@@ -193,7 +194,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="217"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PPl-da-wad" id="3zb-mD-usq">
-                                    <frame key="frameInset" width="375" height="217"/>
+                                    <frame key="frameInset" width="375" height="216"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Clapperboard Filled-100" translatesAutoresizingMaskIntoConstraints="NO" id="dnm-Ty-ZpS">
