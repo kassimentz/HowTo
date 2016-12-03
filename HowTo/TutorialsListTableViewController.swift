@@ -89,6 +89,15 @@ class TutorialsListTableViewController: UITableViewController, UISearchBarDelega
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let tutorial: Tutorial
+        if searchController.isActive && searchController.searchBar.text != "" {
+            tutorial = filteredTutorials[indexPath.row]
+        } else {
+            tutorial = tutorials[indexPath.row]
+        }
+        performSegue(withIdentifier: "showTutorialDetail", sender: tutorial)
+    }
     
     func filterContentForSearchText(_ searchText: String) {
         filteredTutorials = tutorials.filter({( tutorial : Tutorial) -> Bool in
@@ -144,14 +153,20 @@ class TutorialsListTableViewController: UITableViewController, UISearchBarDelega
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "showTutorialDetail" {
+            let tutorialDetail = segue.destination as! TutorialDetailTableViewController
+            if let tutorial = sender as? Tutorial {
+                tutorialDetail.tutorial  = tutorial
+            }
+        }
     }
-    */
+ 
 
 }
