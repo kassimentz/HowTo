@@ -14,6 +14,7 @@ class Tutorial: NSObject {
     var textDescription:String?
     var image:UIImage?
     var steps:[Steps]?
+    var user: User?
     
     init(title:String, textDescription:String, image:UIImage){
         self.title = title as String
