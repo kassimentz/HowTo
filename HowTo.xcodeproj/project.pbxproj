@@ -14,8 +14,12 @@
 		C299774C1DE0CA40008E7F7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C299774A1DE0CA40008E7F7A /* LaunchScreen.storyboard */; };
 		C29977571DE0CA40008E7F7A /* HowToTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29977561DE0CA40008E7F7A /* HowToTests.swift */; };
 		C29977621DE0CA40008E7F7A /* HowToUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29977611DE0CA40008E7F7A /* HowToUITests.swift */; };
-		D0CC7C151DE9F1E500FAD19D /* StepDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CC7C141DE9F1E500FAD19D /* StepDetailViewController.swift */; };
-		D0CC7C161DE9F1E500FAD19D /* StepDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CC7C141DE9F1E500FAD19D /* StepDetailViewController.swift */; };
+		C724AF371DE9FC3100E7D6A4 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C724AF361DE9FC3100E7D6A4 /* CloudKit.framework */; };
+		C724AF3B1DE9FC6200E7D6A4 /* Steps.swift in Sources */ = {isa = PBXBuildFile; fileRef = C724AF391DE9FC6200E7D6A4 /* Steps.swift */; };
+		C724AF3C1DE9FC6200E7D6A4 /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = C724AF3A1DE9FC6200E7D6A4 /* Tutorial.swift */; };
+		CB6CE4FB1DF2F3A900A34526 /* TutorialCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CE4FA1DF2F3A900A34526 /* TutorialCellTableViewCell.swift */; };
+		CBAC85011DEA022500B36864 /* TutorialsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAC85001DEA022500B36864 /* TutorialsListTableViewController.swift */; };
+		D086B9DA1DF331D100F42EB0 /* StepDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086B9D91DF331D100F42EB0 /* StepDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,7 +53,13 @@
 		C299775D1DE0CA40008E7F7A /* HowToUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HowToUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C29977611DE0CA40008E7F7A /* HowToUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToUITests.swift; sourceTree = "<group>"; };
 		C29977631DE0CA40008E7F7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D0CC7C141DE9F1E500FAD19D /* StepDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepDetailViewController.swift; sourceTree = "<group>"; };
+		C724AF341DE9FC2B00E7D6A4 /* HowTo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HowTo.entitlements; sourceTree = "<group>"; };
+		C724AF361DE9FC3100E7D6A4 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		C724AF391DE9FC6200E7D6A4 /* Steps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Steps.swift; sourceTree = "<group>"; };
+		C724AF3A1DE9FC6200E7D6A4 /* Tutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutorial.swift; sourceTree = "<group>"; };
+		CB6CE4FA1DF2F3A900A34526 /* TutorialCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialCellTableViewCell.swift; sourceTree = "<group>"; };
+		CBAC85001DEA022500B36864 /* TutorialsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialsListTableViewController.swift; sourceTree = "<group>"; };
+		D086B9D91DF331D100F42EB0 /* StepDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C724AF371DE9FC3100E7D6A4 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +95,7 @@
 				C29977551DE0CA40008E7F7A /* HowToTests */,
 				C29977601DE0CA40008E7F7A /* HowToUITests */,
 				C299773F1DE0CA40008E7F7A /* Products */,
+				C724AF351DE9FC3100E7D6A4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,7 +112,10 @@
 		C29977401DE0CA40008E7F7A /* HowTo */ = {
 			isa = PBXGroup;
 			children = (
-				D0CC7C131DE9F14200FAD19D /* StepDetail */,
+				D086B9D81DF331B000F42EB0 /* step */,
+				CBAC84FF1DEA020200B36864 /* tutorial */,
+				C724AF381DE9FC5100E7D6A4 /* Model */,
+				C724AF341DE9FC2B00E7D6A4 /* HowTo.entitlements */,
 				C29977411DE0CA40008E7F7A /* AppDelegate.swift */,
 				C29977431DE0CA40008E7F7A /* ViewController.swift */,
 				C29977451DE0CA40008E7F7A /* Main.storyboard */,
@@ -129,12 +144,38 @@
 			path = HowToUITests;
 			sourceTree = "<group>";
 		};
-		D0CC7C131DE9F14200FAD19D /* StepDetail */ = {
+		C724AF351DE9FC3100E7D6A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D0CC7C141DE9F1E500FAD19D /* StepDetailViewController.swift */,
+				C724AF361DE9FC3100E7D6A4 /* CloudKit.framework */,
 			);
-			name = StepDetail;
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C724AF381DE9FC5100E7D6A4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C724AF391DE9FC6200E7D6A4 /* Steps.swift */,
+				C724AF3A1DE9FC6200E7D6A4 /* Tutorial.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		CBAC84FF1DEA020200B36864 /* tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				CBAC85001DEA022500B36864 /* TutorialsListTableViewController.swift */,
+				CB6CE4FA1DF2F3A900A34526 /* TutorialCellTableViewCell.swift */,
+			);
+			name = tutorial;
+			sourceTree = "<group>";
+		};
+		D086B9D81DF331B000F42EB0 /* step */ = {
+			isa = PBXGroup;
+			children = (
+				D086B9D91DF331D100F42EB0 /* StepDetailViewController.swift */,
+			);
+			name = step;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,7 +246,13 @@
 				TargetAttributes = {
 					C299773D1DE0CA3F008E7F7A = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 3KXL7F2ZKT;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					C29977511DE0CA40008E7F7A = {
 						CreatedOnToolsVersion = 8.0;
@@ -271,8 +318,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C724AF3B1DE9FC6200E7D6A4 /* Steps.swift in Sources */,
+				CBAC85011DEA022500B36864 /* TutorialsListTableViewController.swift in Sources */,
+				C724AF3C1DE9FC6200E7D6A4 /* Tutorial.swift in Sources */,
+				CB6CE4FB1DF2F3A900A34526 /* TutorialCellTableViewCell.swift in Sources */,
 				C29977441DE0CA40008E7F7A /* ViewController.swift in Sources */,
-				D0CC7C151DE9F1E500FAD19D /* StepDetailViewController.swift in Sources */,
+				D086B9DA1DF331D100F42EB0 /* StepDetailViewController.swift in Sources */,
 				C29977421DE0CA40008E7F7A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,7 +341,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C29977621DE0CA40008E7F7A /* HowToUITests.swift in Sources */,
-				D0CC7C161DE9F1E500FAD19D /* StepDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,6 +476,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HowTo/HowTo.entitlements;
+				DEVELOPMENT_TEAM = 3KXL7F2ZKT;
 				INFOPLIST_FILE = HowTo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.howto.HowTo;
@@ -438,6 +490,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HowTo/HowTo.entitlements;
+				DEVELOPMENT_TEAM = 3KXL7F2ZKT;
 				INFOPLIST_FILE = HowTo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.howto.HowTo;
