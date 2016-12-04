@@ -8,25 +8,26 @@
 
 import UIKit
 
-class MyTutorialsTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating {
+class MyTutorialsTableViewController: UITableViewController {
+    //UISearchBarDelegate, UISearchResultsUpdating
 
     @IBOutlet var newTutorialButton: UITableView!
     
     
     // MARK: - Properties
     var tutorials = [Tutorial]()
-    var filteredTutorials = [Tutorial]()
-    let searchController = UISearchController(searchResultsController: nil)
+//    var filteredTutorials = [Tutorial]()
+//    let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Setup the Search Controller
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.delegate = self
-        definesPresentationContext = true
-        searchController.dimsBackgroundDuringPresentation = false
-        tableView.tableHeaderView = searchController.searchBar
+//        searchController.searchResultsUpdater = self
+//        searchController.searchBar.delegate = self
+//        definesPresentationContext = true
+//        searchController.dimsBackgroundDuringPresentation = false
+//        tableView.tableHeaderView = searchController.searchBar
         
         
         self.title = "Meus Tutoriais"
@@ -51,9 +52,9 @@ class MyTutorialsTableViewController: UITableViewController, UISearchBarDelegate
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchController.isActive && searchController.searchBar.text != "" {
-            return filteredTutorials.count
-        }
+//        if searchController.isActive && searchController.searchBar.text != "" {
+//            return filteredTutorials.count
+//        }
         return tutorials.count
     }
 
@@ -61,12 +62,12 @@ class MyTutorialsTableViewController: UITableViewController, UISearchBarDelegate
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:MyTutorialTableViewCell = tableView.dequeueReusableCell(withIdentifier: "myTutorialsCell", for: indexPath) as! MyTutorialTableViewCell
         let tutorial: Tutorial
-        if searchController.isActive && searchController.searchBar.text != "" {
-            tutorial = filteredTutorials[indexPath.row]
-        } else {
-            tutorial = tutorials[indexPath.row]
-        }
-        
+//        if searchController.isActive && searchController.searchBar.text != "" {
+//            tutorial = filteredTutorials[indexPath.row]
+//        } else {
+//            tutorial = tutorials[indexPath.row]
+//        }
+        tutorial = tutorials[indexPath.row]
         cell.myTutorialsTitle?.text = tutorial.title
         cell.myTutorialsDescription?.text = tutorial.textDescription
         cell.myTutorialsImage?.image = tutorial.image
@@ -75,31 +76,32 @@ class MyTutorialsTableViewController: UITableViewController, UISearchBarDelegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let tutorial: Tutorial
-        if searchController.isActive && searchController.searchBar.text != "" {
-            tutorial = filteredTutorials[indexPath.row]
-        } else {
-            tutorial = tutorials[indexPath.row]
-        }
+//        if searchController.isActive && searchController.searchBar.text != "" {
+//            tutorial = filteredTutorials[indexPath.row]
+//        } else {
+//            tutorial = tutorials[indexPath.row]
+//        }
+        tutorial = tutorials[indexPath.row]
         performSegue(withIdentifier: "showMyTutorialDetail", sender: tutorial)
     }
     
-    func filterContentForSearchText(_ searchText: String) {
-        filteredTutorials = tutorials.filter({( tutorial : Tutorial) -> Bool in
-            return (tutorial.title?.lowercased().contains(searchText.lowercased()))!
-        })
-        tableView.reloadData()
-    }
+//    func filterContentForSearchText(_ searchText: String) {
+//        filteredTutorials = tutorials.filter({( tutorial : Tutorial) -> Bool in
+//            return (tutorial.title?.lowercased().contains(searchText.lowercased()))!
+//        })
+//        tableView.reloadData()
+//    }
     
     // MARK: - UISearchBar Delegate
-    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        filterContentForSearchText(searchBar.text!)
-    }
-    
-    // MARK: - UISearchResultsUpdating Delegate
-    func updateSearchResults(for searchController: UISearchController) {
-        let searchBar = searchController.searchBar
-        filterContentForSearchText(searchBar.text!)
-    }
+//    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+//        filterContentForSearchText(searchBar.text!)
+//    }
+//    
+//    // MARK: - UISearchResultsUpdating Delegate
+//    func updateSearchResults(for searchController: UISearchController) {
+//        let searchBar = searchController.searchBar
+//        filterContentForSearchText(searchBar.text!)
+//    }
     
     // MARK: - Navigation
     
