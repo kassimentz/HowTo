@@ -10,6 +10,10 @@ import UIKit
 
 class NewStepViewController: UIViewController {
 
+    @IBOutlet weak var NewVideoButton: UIButton!
+    @IBOutlet weak var StepDescriptionTextField: UITextField!
+    @IBOutlet weak var SaveStepButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
