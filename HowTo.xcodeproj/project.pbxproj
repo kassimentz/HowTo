@@ -16,6 +16,7 @@
 		C724AF371DE9FC3100E7D6A4 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C724AF361DE9FC3100E7D6A4 /* CloudKit.framework */; };
 		C724AF3B1DE9FC6200E7D6A4 /* Steps.swift in Sources */ = {isa = PBXBuildFile; fileRef = C724AF391DE9FC6200E7D6A4 /* Steps.swift */; };
 		C724AF3C1DE9FC6200E7D6A4 /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = C724AF3A1DE9FC6200E7D6A4 /* Tutorial.swift */; };
+		CB47BD541DFC315B001F6611 /* NewStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB47BD531DFC315B001F6611 /* NewStepViewController.swift */; };
 		CB6CE4FB1DF2F3A900A34526 /* TutorialCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CE4FA1DF2F3A900A34526 /* TutorialCellTableViewCell.swift */; };
 		CB6CE4FD1DF2F9D300A34526 /* TutorialDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CE4FC1DF2F9D300A34526 /* TutorialDetailTableViewController.swift */; };
 		CB6CE4FF1DF3030F00A34526 /* TutorialDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CE4FE1DF3030F00A34526 /* TutorialDetailTableViewCell.swift */; };
@@ -61,6 +62,7 @@
 		C724AF361DE9FC3100E7D6A4 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		C724AF391DE9FC6200E7D6A4 /* Steps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Steps.swift; sourceTree = "<group>"; };
 		C724AF3A1DE9FC6200E7D6A4 /* Tutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutorial.swift; sourceTree = "<group>"; };
+		CB47BD531DFC315B001F6611 /* NewStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewStepViewController.swift; sourceTree = "<group>"; };
 		CB6CE4FA1DF2F3A900A34526 /* TutorialCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialCellTableViewCell.swift; sourceTree = "<group>"; };
 		CB6CE4FC1DF2F9D300A34526 /* TutorialDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialDetailTableViewController.swift; sourceTree = "<group>"; };
 		CB6CE4FE1DF3030F00A34526 /* TutorialDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialDetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				CB6CE4FC1DF2F9D300A34526 /* TutorialDetailTableViewController.swift */,
 				CB6CE50E1DF34A0C00A34526 /* MyTutorialsTableViewController.swift */,
 				D086B9DC1DF33D4300F42EB0 /* Cell */,
+				CB47BD531DFC315B001F6611 /* NewStepViewController.swift */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				CBAC85011DEA022500B36864 /* TutorialsListTableViewController.swift in Sources */,
 				CB6CE4FF1DF3030F00A34526 /* TutorialDetailTableViewCell.swift in Sources */,
 				CB6CE4FD1DF2F9D300A34526 /* TutorialDetailTableViewController.swift in Sources */,
+				CB47BD541DFC315B001F6611 /* NewStepViewController.swift in Sources */,
 				C724AF3C1DE9FC6200E7D6A4 /* Tutorial.swift in Sources */,
 				CB6CE4FB1DF2F3A900A34526 /* TutorialCellTableViewCell.swift in Sources */,
 				CB6CE5091DF339FE00A34526 /* StepsTableViewCell.swift in Sources */,
