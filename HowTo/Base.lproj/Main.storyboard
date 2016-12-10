@@ -203,7 +203,7 @@
                                 <rect key="frame" x="0.0" y="156" width="375" height="424"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xG1-x2-k2C" id="Ss4-Du-ed0">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="423"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="424"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Q5-ur-D3s">
@@ -282,7 +282,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WKC-5z-7Qh" id="7Xm-pC-bhq">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -319,6 +319,9 @@
                                     <constraint firstAttribute="height" constant="175" id="D5l-My-MK7"/>
                                 </constraints>
                                 <state key="normal" title="Gravar Vídeo"/>
+                                <connections>
+                                    <action selector="recordVideo:" destination="agS-vD-cc1" eventType="touchUpInside" id="3tK-rl-grC"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Descrição do Passo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVG-eq-Wuq">
                                 <rect key="frame" x="26" y="279" width="323" height="21"/>
@@ -503,11 +506,11 @@
                                 <rect key="frame" x="0.0" y="326" width="375" height="108"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DoF-F7-YXU" id="eqQ-bH-JeE">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="107"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="108"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sMi-rP-Yvp">
-                                            <rect key="frame" x="18" y="18" width="81" height="72"/>
+                                            <rect key="frame" x="18" y="18" width="81" height="71"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="81" id="mVV-YX-wOy"/>
                                             </constraints>
@@ -519,7 +522,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1I-Rp-Jcu">
-                                            <rect key="frame" x="109" y="49" width="248" height="41"/>
+                                            <rect key="frame" x="109" y="49" width="248" height="40"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>

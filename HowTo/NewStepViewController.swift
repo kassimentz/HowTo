@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import MobileCoreServices
+import AVKit
+import AVFoundation
 
-class NewStepViewController: UIViewController {
+class NewStepViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
-    @IBOutlet weak var NewVideoButton: UIButton!
+    let imagePicker: UIImagePickerController! = UIImagePickerController()
+    let saveFileName = "/test.mp4"
+    
     @IBOutlet weak var StepDescriptionTextField: UITextField!
     @IBOutlet weak var SaveStepButton: UIButton!
     
@@ -26,6 +31,8 @@ class NewStepViewController: UIViewController {
     }
     
 
+    @IBAction func recordVideo(_ sender: Any) {
+    }
     /*
     // MARK: - Navigation
 
@@ -33,6 +40,8 @@ class NewStepViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+     
+     
     }
     */
 
