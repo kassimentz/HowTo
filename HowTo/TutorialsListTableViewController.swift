@@ -8,105 +8,137 @@
 
 import UIKit
 
-class TutorialsListTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating {
+class TutorialsListTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchBarTopConstraint: NSLayoutConstraint!
+    var refreshControl: UIRefreshControl!
+
+    var tutorials:[Tutorial]?
+    var filteredTutorials:[Tutorial]?
+    var isShowing:Bool = false
     
-    // MARK: - Properties
-    var tutorials = [Tutorial]()
-    var filteredTutorials = [Tutorial]()
-    let searchController = UISearchController(searchResultsController: nil)
-    
+    // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Setup the Search Controller
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.delegate = self
-        definesPresentationContext = true
-        searchController.dimsBackgroundDuringPresentation = false
-        tableView.tableHeaderView = searchController.searchBar
+        title = "Tutoriais"
         
-        self.title = "Tutoriais"
+        styleTableView()
+        styleSearchBar()
+        styleRefreshControl()
         
+        //TODO: Show loading overlay
         populateTutorialsList()
-        
     }
     
-    func populateTutorialsList(){
-        tutorials = [
-            Tutorial(title:"titulo1", textDescription: "textDescription1", image: #imageLiteral(resourceName: "Play Filled-100")),
-            Tutorial(title:"titulo2", textDescription: "textDescription2", image: #imageLiteral(resourceName: "Play Filled-100")),
-            Tutorial(title:"titulo3", textDescription: "textDescription3", image: #imageLiteral(resourceName: "Play Filled-100")),
-            Tutorial(title:"titulo4", textDescription: "textDescription4", image: #imageLiteral(resourceName: "Play Filled-100")),
-            Tutorial(title:"titulo5", textDescription: "textDescription5", image: #imageLiteral(resourceName: "Play Filled-100"))
-        ]
+    // MARK: - Style
+    
+    func styleRefreshControl() {
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(TutorialsListTableViewController.populateTutorialsList), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refreshControl)
     }
     
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    func styleSearchBar() {
+        searchBar.placeholder = "Pesquise por tutoriais"
+        searchBar.delegate = self
     }
-
-    // MARK: - Table view data source
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchController.isActive && searchController.searchBar.text != "" {
-            return filteredTutorials.count
+    
+    func styleTableView() {
+        tableView.estimatedRowHeight = 200
+        tableView.separatorInset = UIEdgeInsets.zero
+        tableView.tableFooterView = UIView()
+    }
+    
+    // MARK: - Fetch
+    
+    func populateTutorialsList() {
+        DataManager.fetchTutorials { (success, tutorials) in
+            self.refreshControl.endRefreshing()
+            //TODO: hide loading overlay
+            if success {
+                self.tutorials = tutorials
+                self.tableView.reloadData()
+            } else {
+                //TODO: Show error message
+            }
         }
-        return tutorials.count
     }
     
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:TutorialCellTableViewCell = tableView.dequeueReusableCell(withIdentifier: "tutorialCell", for: indexPath) as! TutorialCellTableViewCell
-        let tutorial: Tutorial
-        if searchController.isActive && searchController.searchBar.text != "" {
-            tutorial = filteredTutorials[indexPath.row]
+    // MARK: - Actions
+
+    @IBAction func didTapSearchButton(_ sender: Any) {
+        searchBarTopConstraint.constant = isShowing ? -44 : 0
+        isShowing = !isShowing
+        
+        if !isShowing {
+            searchBar.text = nil
+            filterContentForSearchText()
+            searchBar.resignFirstResponder()
         } else {
-            tutorial = tutorials[indexPath.row]
+            searchBar.becomeFirstResponder()
         }
+
+        UIView.animate(withDuration:0.5, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
+
+    // MARK: - TableView
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tutorialArray()?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell:TutorialCellTableViewCell = tableView.dequeueReusableCell(withIdentifier: "tutorialCell", for: indexPath) as! TutorialCellTableViewCell
         
-        cell.tutorialDescriptionComponent?.text = tutorial.title
-        cell.tutorialVideoComponent?.image = tutorial.image
+        let tutorial:Tutorial? = tutorialArray()?[indexPath.row]
+        
+        cell.tutorialDescriptionComponent?.text = tutorial?.title
+        cell.tutorialVideoComponent?.image = tutorial?.image
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let tutorial: Tutorial
-        if searchController.isActive && searchController.searchBar.text != "" {
-            tutorial = filteredTutorials[indexPath.row]
-        } else {
-            tutorial = tutorials[indexPath.row]
-        }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let tutorial:Tutorial? = tutorialArray()?[indexPath.row]
         performSegue(withIdentifier: "showTutorialDetail", sender: tutorial)
     }
     
-    func filterContentForSearchText(_ searchText: String) {
-        filteredTutorials = tutorials.filter({( tutorial : Tutorial) -> Bool in
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    // MARK: - UISearchBar Delegate
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filterContentForSearchText()
+    }
+    
+    // MARK: - Helper Methods
+    
+    func filterContentForSearchText() {
+        let searchText:String = searchBar.text ?? ""
+        filteredTutorials = tutorials?.filter({(tutorial : Tutorial) -> Bool in
             return (tutorial.title?.lowercased().contains(searchText.lowercased()))!
         })
         tableView.reloadData()
     }
     
-    // MARK: - UISearchBar Delegate
-    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        filterContentForSearchText(searchBar.text!)
+    func tutorialArray() -> [Tutorial]? {
+        if searchBar.text != "" {
+            return filteredTutorials
+        } else {
+            return tutorials
+        }
     }
-    
-    // MARK: - UISearchResultsUpdating Delegate
-    func updateSearchResults(for searchController: UISearchController) {
-        let searchBar = searchController.searchBar
-        filterContentForSearchText(searchBar.text!)
-    }
-    
     
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
         if segue.identifier == "showTutorialDetail" {
             let tutorialDetail = segue.destination as! TutorialDetailTableViewController
             if let tutorial = sender as? Tutorial {
@@ -114,6 +146,4 @@ class TutorialsListTableViewController: UITableViewController, UISearchBarDelega
             }
         }
     }
- 
-
 }
