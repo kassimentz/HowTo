@@ -21,11 +21,23 @@ class StepDetailViewController: UIViewController {
     
     var player: AVPlayer?
     
+    @IBOutlet weak var progressView: UIProgressView!
+    
+    var counter:Int = 0 {
+        didSet {
+            let fractionalProgress = Float(counter+1) / Float((steps?.count)!)
+            let animated = counter+1 != 0
+            
+            progressView.setProgress(fractionalProgress, animated: animated)
+            
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        stepCurrent=3
+        stepCurrent=0
         
         let step1 = Steps();
         step1.text = "TESTE VIDEO 1"
@@ -49,12 +61,16 @@ class StepDetailViewController: UIViewController {
         labelDescricaoVideo.text = steps?[stepCurrent!].text
         
 
+        progressView.setProgress(0, animated: true)
+        
         // Do any additional setup after loading the view.
     }
     
     override func viewDidLayoutSubviews() {
         carregaVideo()
+        counter = stepCurrent!
     }
+    
     
     func carregaVideo(){
         
@@ -103,6 +119,8 @@ class StepDetailViewController: UIViewController {
             player = AVPlayer(url: URL(string: (steps?[stepCurrent!].videoURL)!)!)
             player?.play()
             
+            counter=stepCurrent!
+            
         }
     }
 
@@ -116,6 +134,8 @@ class StepDetailViewController: UIViewController {
             player?.pause()
             player = AVPlayer(url: URL(string: (steps?[stepCurrent!].videoURL)!)!)
             player?.play()
+            
+            counter=stepCurrent!
         }
     }
 
