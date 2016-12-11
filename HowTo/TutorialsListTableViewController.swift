@@ -23,9 +23,7 @@ class TutorialsListTableViewController: UIViewController, UITableViewDataSource,
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        title = "Tutoriais"
-        
+                
         styleTableView()
         styleSearchBar()
         styleRefreshControl()

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uR6-CL-q9J">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uR6-CL-q9J">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -135,11 +135,11 @@
             </objects>
             <point key="canvasLocation" x="2735" y="789"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--   -->
         <scene sceneID="eRB-At-tHI">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hHX-Qu-nKF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" id="nxr-E0-izM">
+                    <tabBarItem key="tabBarItem" title="   " image="Play-100" selectedImage="Play Filled-100" id="nxr-E0-izM">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -169,6 +169,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.35638833050000002" green="0.36346822979999999" blue="0.42981570959999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="0.35638833050000002" green="0.36346822979999999" blue="0.42981570959999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="hHX-Qu-nKF" kind="relationship" relationship="viewControllers" id="eMJ-nh-RZS"/>
@@ -179,11 +181,11 @@
             </objects>
             <point key="canvasLocation" x="-484" y="793"/>
         </scene>
-        <!--Meus Tutoriais-->
+        <!--   -->
         <scene sceneID="WNk-H7-3lj">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Y07-y1-i3T" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Meus Tutoriais" id="YrP-5x-L9U">
+                    <tabBarItem key="tabBarItem" title="   " image="Clapperboard-100" selectedImage="Clapperboard Filled-100" id="YrP-5x-L9U">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -590,7 +592,7 @@
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sMi-rP-Yvp" customClass="DesignableImageView" customModule="HowTo" customModuleProvider="target">
                                             <rect key="frame" x="20" y="19" width="70" height="70"/>
-                                            <color key="backgroundColor" red="0.35638833050000002" green="0.36346822979999999" blue="0.42981570959999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="70" id="FeC-RN-jGX"/>
                                                 <constraint firstAttribute="width" constant="70" id="mVV-YX-wOy"/>
@@ -674,7 +676,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Play Filled-100" width="100" height="100"/>
+        <image name="Clapperboard Filled-100" width="30" height="30"/>
+        <image name="Clapperboard-100" width="30" height="30"/>
+        <image name="Play Filled-100" width="30" height="30"/>
+        <image name="Play-100" width="30" height="30"/>
         <image name="User" width="71" height="71"/>
         <image name="back" width="256" height="256"/>
         <image name="next" width="512" height="512"/>

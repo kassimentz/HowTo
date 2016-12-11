@@ -43,9 +43,6 @@ class StepDetailViewController: UIViewController {
     // MARK - Update Views
     
     func updateViews() {
-        
-        print(stepCurrent)
-        
         self.title = "Passo \(stepCurrent+1)/\(steps?.count ?? 0)"
         
         if progressView != nil {
@@ -58,7 +55,7 @@ class StepDetailViewController: UIViewController {
         }
         
         if viewVideo != nil && player != nil {
-            player = nil
+            player?.pause()
             
             if let url = steps?[stepCurrent].videoURL {
                 player = AVPlayer(url: url)
