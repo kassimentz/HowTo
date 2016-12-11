@@ -16,7 +16,6 @@ class Steps: NSObject {
     var videoURL:String?
     var image:UIImage?
     var order:Int = 0
-    var URL = URL?
     
     func createRecord() -> CKRecord {
         let record = CKRecord(recordType: "Steps")
