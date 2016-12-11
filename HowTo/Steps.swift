@@ -18,6 +18,8 @@ class Steps: NSObject {
     var image:UIImage?
     var order:Int = 0
     
+    override init() {}
+    
     init(record:CKRecord) {
         super.init()
         self.recordID = record.recordID
