@@ -15,7 +15,7 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
     var controller = UIImagePickerController()
     var assetsLibrary = ALAssetsLibrary()
     
-    @IBOutlet weak var StepDescriptionTextField: UITextField!
+    @IBOutlet weak var stepDescriptionText: UITextView!
     @IBOutlet weak var SaveStepButton: UIButton!
     
     @IBAction func recordVideo(_ sender: Any) {
@@ -48,6 +48,7 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround() 
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -64,7 +65,7 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
                         
                         //create a step model object using this url.
                         let step1 = Steps();
-                        step1.text = StepDescriptionTextField.text!
+                        step1.text = stepDescriptionText.text!
                         step1.videoURL = url
                         
                         assetsLibrary.writeVideoAtPath(toSavedPhotosAlbum: url,
@@ -96,3 +97,16 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
         // Dispose of any resources that can be recreated.
     }
 }
+
+//Extension to hide keyboard. just use hideKeyboardWhenTappedAround
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+

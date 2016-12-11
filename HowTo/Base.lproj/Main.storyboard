@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uR6-CL-q9J">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="agS-vD-cc1">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -359,15 +359,6 @@
                                 <rect key="frame" x="66" y="568" width="243" height="30"/>
                                 <state key="normal" title="Salvar"/>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cBk-fR-2hS">
-                                <rect key="frame" x="26" y="315" width="323" height="165"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="165" id="ruM-64-rOs"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EXG-7A-s5o">
                                 <rect key="frame" x="26" y="179" width="323" height="75"/>
                                 <constraints>
@@ -378,6 +369,16 @@
                                     <action selector="viewLibrary:" destination="agS-vD-cc1" eventType="touchUpInside" id="C2e-N6-VnK"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="asY-I5-aGU">
+                                <rect key="frame" x="26" y="315" width="323" height="165"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="165" id="JrM-hJ-mdc"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -389,20 +390,19 @@
                             <constraint firstItem="vtG-pF-kCn" firstAttribute="leading" secondItem="HX7-W7-ijo" secondAttribute="leadingMargin" constant="50" id="EFq-EI-yD6"/>
                             <constraint firstItem="cVG-eq-Wuq" firstAttribute="top" secondItem="EXG-7A-s5o" secondAttribute="bottom" constant="20" id="Gcc-3h-3br"/>
                             <constraint firstItem="gTs-7e-dtZ" firstAttribute="leading" secondItem="HX7-W7-ijo" secondAttribute="leadingMargin" constant="10" id="Iz8-ql-yni"/>
-                            <constraint firstItem="cBk-fR-2hS" firstAttribute="top" secondItem="cVG-eq-Wuq" secondAttribute="bottom" constant="20" id="MCe-QP-nco"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vtG-pF-kCn" secondAttribute="trailing" constant="50" id="T7E-Ne-k3j"/>
+                            <constraint firstItem="asY-I5-aGU" firstAttribute="top" secondItem="cVG-eq-Wuq" secondAttribute="bottom" constant="20" id="Umh-oM-UpL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="asY-I5-aGU" secondAttribute="trailing" constant="10" id="V6K-HR-oHy"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cVG-eq-Wuq" secondAttribute="trailing" constant="10" id="eBn-8Q-4Xb"/>
                             <constraint firstItem="EXG-7A-s5o" firstAttribute="top" secondItem="gTs-7e-dtZ" secondAttribute="bottom" constant="20" id="fLt-fP-GNm"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="cBk-fR-2hS" secondAttribute="trailing" constant="10" id="iSb-3e-M46"/>
+                            <constraint firstItem="asY-I5-aGU" firstAttribute="leading" secondItem="HX7-W7-ijo" secondAttribute="leadingMargin" constant="10" id="gId-hs-gIn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gTs-7e-dtZ" secondAttribute="trailing" constant="10" id="nnR-cp-FsK"/>
-                            <constraint firstItem="cBk-fR-2hS" firstAttribute="leading" secondItem="HX7-W7-ijo" secondAttribute="leadingMargin" constant="10" id="ygl-4T-pPi"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Novo Passo" id="hvQ-c0-zu8"/>
                     <connections>
-                        <outlet property="NewVideoButton" destination="gTs-7e-dtZ" id="KY3-LP-bjK"/>
                         <outlet property="SaveStepButton" destination="vtG-pF-kCn" id="pTV-9O-VyP"/>
-                        <outlet property="StepDescriptionTextField" destination="cBk-fR-2hS" id="UfZ-v4-qla"/>
+                        <outlet property="stepDescriptionText" destination="asY-I5-aGU" id="vgE-Lv-Cdc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qxh-V1-HNb" userLabel="First Responder" sceneMemberID="firstResponder"/>
