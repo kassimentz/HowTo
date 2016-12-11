@@ -7,10 +7,21 @@
 //
 
 import UIKit
+import CloudKit
 
 class User: NSObject {
     
     var name:String?
-    var profileImage:UIImage?
+    var image:UIImage?
+    
+    init(record:CKRecord) {
+        super.init()
+        self.name = record["name"]! as? String
+        
+        let asset:CKAsset = record["image"]! as! CKAsset
+        if let imageData = NSData(contentsOf: asset.fileURL) {
+            self.image = UIImage(data: imageData as Data)
+        }
+    }
     
 }

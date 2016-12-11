@@ -55,7 +55,7 @@ class DataManager: NSObject {
         
         CKContainer.default().publicCloudDatabase.perform(query, inZoneWith: nil) { results, error in
             DispatchQueue.main.async(){
-                
+                 
                 if error != nil {
                     print(error ?? "")
                 }
@@ -66,6 +66,49 @@ class DataManager: NSObject {
                 }
                 
                 completionHandler(error == nil, tutorials)
+            }
+        }
+    }
+    
+    class func fetchUserForTutorial(tutorial:Tutorial, completionHandler: @escaping (_ success:Bool, _ user:User?) -> Void) {
+        
+        if let recordId = tutorial.userReference?.recordID {
+            CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordId, completionHandler: { (record, error) in
+                if record != nil {
+                    completionHandler(error == nil, User(record:record!))
+                } else {
+                    completionHandler(false, nil)
+                }
+            })
+        } else {
+            completionHandler(false, nil)
+        }
+    }
+    
+    class func fetchStepsForTutorial(tutorial:Tutorial, completionHandler: @escaping (_ success:Bool, _ steps:[Steps]) -> Void) {
+        
+        var predicate = NSPredicate()
+        if let recordID = tutorial.recordID {
+            let tutorialReference:CKReference = CKReference(recordID: recordID, action: .none)
+            predicate = NSPredicate(format: "tutorial == %@", argumentArray:[tutorialReference])
+        }
+        let sort = NSSortDescriptor(key: "order", ascending: true)
+        let query = CKQuery(recordType: "Steps", predicate: predicate)
+        query.sortDescriptors = [sort]
+        
+        CKContainer.default().publicCloudDatabase.perform(query, inZoneWith: nil) { results, error in
+            DispatchQueue.main.async(){
+                
+                if error != nil {
+                    print(error ?? "")
+                }
+                
+                var steps = [Steps]()
+                for result in results! {
+                    steps.append(Steps(record: result))
+                }
+                
+                completionHandler(error == nil, steps)
             }
         }
     }

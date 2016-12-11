@@ -13,10 +13,11 @@
 		C299774C1DE0CA40008E7F7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C299774A1DE0CA40008E7F7A /* LaunchScreen.storyboard */; };
 		C29977571DE0CA40008E7F7A /* HowToTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29977561DE0CA40008E7F7A /* HowToTests.swift */; };
 		C29977621DE0CA40008E7F7A /* HowToUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29977611DE0CA40008E7F7A /* HowToUITests.swift */; };
-		C724AF371DE9FC3100E7D6A4 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C724AF361DE9FC3100E7D6A4 /* CloudKit.framework */; };
 		C724AF3B1DE9FC6200E7D6A4 /* Steps.swift in Sources */ = {isa = PBXBuildFile; fileRef = C724AF391DE9FC6200E7D6A4 /* Steps.swift */; };
 		C724AF3C1DE9FC6200E7D6A4 /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = C724AF3A1DE9FC6200E7D6A4 /* Tutorial.swift */; };
 		C72506621DF3446900160463 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72506611DF3446900160463 /* DataManager.swift */; };
+		C735D2571DFCB0BF00622EB9 /* DesignableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C735D2561DFCB0BF00622EB9 /* DesignableImageView.swift */; };
+		C735D25B1DFCCB1700622EB9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C735D25A1DFCCB1700622EB9 /* CloudKit.framework */; };
 		CB47BD541DFC315B001F6611 /* NewStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB47BD531DFC315B001F6611 /* NewStepViewController.swift */; };
 		CB6CE4FB1DF2F3A900A34526 /* TutorialCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CE4FA1DF2F3A900A34526 /* TutorialCellTableViewCell.swift */; };
 		CB6CE4FD1DF2F9D300A34526 /* TutorialDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CE4FC1DF2F9D300A34526 /* TutorialDetailTableViewController.swift */; };
@@ -60,10 +61,11 @@
 		C29977611DE0CA40008E7F7A /* HowToUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToUITests.swift; sourceTree = "<group>"; };
 		C29977631DE0CA40008E7F7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C724AF341DE9FC2B00E7D6A4 /* HowTo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HowTo.entitlements; sourceTree = "<group>"; };
-		C724AF361DE9FC3100E7D6A4 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		C724AF391DE9FC6200E7D6A4 /* Steps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Steps.swift; sourceTree = "<group>"; };
 		C724AF3A1DE9FC6200E7D6A4 /* Tutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutorial.swift; sourceTree = "<group>"; };
 		C72506611DF3446900160463 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		C735D2561DFCB0BF00622EB9 /* DesignableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableImageView.swift; sourceTree = "<group>"; };
+		C735D25A1DFCCB1700622EB9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		CB47BD531DFC315B001F6611 /* NewStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewStepViewController.swift; sourceTree = "<group>"; };
 		CB6CE4FA1DF2F3A900A34526 /* TutorialCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialCellTableViewCell.swift; sourceTree = "<group>"; };
 		CB6CE4FC1DF2F9D300A34526 /* TutorialDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialDetailTableViewController.swift; sourceTree = "<group>"; };
@@ -81,7 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C724AF371DE9FC3100E7D6A4 /* CloudKit.framework in Frameworks */,
+				C735D25B1DFCCB1700622EB9 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +128,7 @@
 		C29977401DE0CA40008E7F7A /* HowTo */ = {
 			isa = PBXGroup;
 			children = (
+				C735D25C1DFD935900622EB9 /* Designables */,
 				C724AF381DE9FC5100E7D6A4 /* Model */,
 				D086B9DB1DF33D3C00F42EB0 /* App */,
 				C724AF341DE9FC2B00E7D6A4 /* HowTo.entitlements */,
@@ -159,7 +162,7 @@
 		C724AF351DE9FC3100E7D6A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C724AF361DE9FC3100E7D6A4 /* CloudKit.framework */,
+				C735D25A1DFCCB1700622EB9 /* CloudKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -173,6 +176,14 @@
 				C72506611DF3446900160463 /* DataManager.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		C735D25C1DFD935900622EB9 /* Designables */ = {
+			isa = PBXGroup;
+			children = (
+				C735D2561DFCB0BF00622EB9 /* DesignableImageView.swift */,
+			);
+			name = Designables;
 			sourceTree = "<group>";
 		};
 		D086B9DB1DF33D3C00F42EB0 /* App */ = {
@@ -340,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C724AF3B1DE9FC6200E7D6A4 /* Steps.swift in Sources */,
+				C735D2571DFCB0BF00622EB9 /* DesignableImageView.swift in Sources */,
 				CBAC85011DEA022500B36864 /* TutorialsListTableViewController.swift in Sources */,
 				CB6CE4FF1DF3030F00A34526 /* TutorialDetailTableViewCell.swift in Sources */,
 				CB6CE4FD1DF2F9D300A34526 /* TutorialDetailTableViewController.swift in Sources */,
