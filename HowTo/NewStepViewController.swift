@@ -65,7 +65,7 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
                         //create a step model object using this url.
                         let step1 = Steps();
                         step1.text = StepDescriptionTextField.text!
-                        //step1.URL = url
+                        step1.videoURL = url
                         
                         assetsLibrary.writeVideoAtPath(toSavedPhotosAlbum: url,
                                                        completionBlock: {(url: URL?, error: Error?) in
