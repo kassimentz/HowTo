@@ -99,7 +99,7 @@ class TutorialsListTableViewController: UIViewController, UITableViewDataSource,
         let tutorial:Tutorial? = tutorialArray()?[indexPath.row]
         
         cell.tutorialDescriptionComponent?.text = tutorial?.title
-        cell.tutorialVideoComponent?.image = tutorial?.image
+        cell.tutorialVideoComponent?.image = tutorial?.image ?? UIImage(named: "video-tutorial")
         return cell
     }
 

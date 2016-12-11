@@ -12,131 +12,119 @@ import AVFoundation
 
 class StepDetailViewController: UIViewController {
 
-    
     @IBOutlet weak var viewVideo: UIView!
-    var steps:[Steps]?
-    var stepCurrent:Int?
-    
-    @IBOutlet weak var labelDescricaoVideo: UILabel!
-    
-    var player: AVPlayer?
-    
+    @IBOutlet weak var labelDescriptionVideo: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
-    
-    var counter:Int = 0 {
+    @IBOutlet weak var backButtonImage: UIImageView!
+    @IBOutlet weak var nextButtonImage: UIImageView!
+
+    var player:AVPlayer?
+    var steps:[Steps]?
+    var stepCurrent:Int = 0 {
         didSet {
-            let fractionalProgress = Float(counter+1) / Float((steps?.count)!)
-            let animated = counter+1 != 0
-            
-            progressView.setProgress(fractionalProgress, animated: animated)
-            
+            updateViews()
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
-        stepCurrent=0
-        
-        let step1 = Steps();
-        step1.text = "TESTE VIDEO 1"
-        step1.videoURL = "http://dev.exiv2.org/attachments/341/video-2012-07-05-02-29-27.mp4"
-        
-        let step2 = Steps();
-        step2.text = "TESTE VIDEO 2"
-        step2.videoURL = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"
-        
-        let step3 = Steps();
-        step3.text = "TESTE VIDEO 3"
-        step3.videoURL = "http://dev.exiv2.org/attachments/345/04072012033.mp4"
-        
-        let step4 = Steps();
-        step4.text = "TESTE VIDEO 4"
-        step4.videoURL = "http://dev.exiv2.org/attachments/346/05112011034.mp4"
-        
-        steps = [step1, step2, step3, step4]
-        
-        // carrega dados dos steps
-        labelDescricaoVideo.text = steps?[stepCurrent!].text
-        
-
-        progressView.setProgress(0, animated: true)
-        
-        // Do any additional setup after loading the view.
+    // MARK - View Lifecycle
+    
+    override func viewWillAppear(_ animated: Bool) {
+        updateViews()
     }
     
     override func viewDidLayoutSubviews() {
-        carregaVideo()
-        counter = stepCurrent!
+        loadVideo()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        player?.pause()
+    }
     
-    func carregaVideo(){
+    // MARK - Update Views
+    
+    func updateViews() {
         
-        let videoURL = URL(string: (steps?[stepCurrent!].videoURL)!)
-        player = AVPlayer(url: videoURL!)
+        print(stepCurrent)
         
-        let playerLayer = AVPlayerLayer(player: player)
-        playerLayer.frame = viewVideo.bounds
+        self.title = "Passo \(stepCurrent+1)/\(steps?.count ?? 0)"
         
-        viewVideo.layer.addSublayer(playerLayer)
-        player?.play()
+        if progressView != nil {
+            let fractionalProgress = Float(stepCurrent+1) / Float((steps?.count)!)
+            progressView.setProgress(fractionalProgress, animated: true)
+        }
         
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil, queue: nil) { notification in
-            self.player?.seek(to: kCMTimeZero)
-            self.player?.play()
+        if labelDescriptionVideo != nil {
+            labelDescriptionVideo.text = steps?[stepCurrent].text
+        }
+        
+        if viewVideo != nil && player != nil {
+            player = nil
+            
+            if let url = steps?[stepCurrent].videoURL {
+                player = AVPlayer(url: url)
+                player?.play()
+            }
+        }
+        
+        if backButtonImage != nil {
+            backButtonImage.alpha = stepCurrent == 0 ? 0.2 : 1
+        }
+        
+        if nextButtonImage != nil {
+            nextButtonImage.alpha = stepCurrent+1 == steps?.count ? 0.2 : 1
         }
     }
     
-    func playerItemDidReachEnd(notification: NSNotification) {
-        player?.seek(to: kCMTimeZero)
-        player?.play()
+    // MARK - Player
+    
+    func loadVideo() {
+        if let url = steps?[stepCurrent].videoURL {
+            player = AVPlayer(url: url)
+            
+            let blurPlayerLayer = AVPlayerLayer(player: player)
+            blurPlayerLayer.frame = viewVideo.bounds
+            blurPlayerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+
+            viewVideo.layer.addSublayer(blurPlayerLayer)
+            
+            let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.dark)) as UIVisualEffectView
+            visualEffectView.frame = viewVideo.bounds
+            viewVideo.addSubview(visualEffectView)
+            
+            let playerLayer = AVPlayerLayer(player: player)
+            playerLayer.frame = viewVideo.bounds
+            viewVideo.layer.addSublayer(playerLayer)
+
+            player?.play()
+            
+            NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil, queue: nil) { notification in
+                self.player?.seek(to: kCMTimeZero)
+                self.player?.play()
+            }
+        }
     }
     
+    // MARK - Actions
     
     @IBAction func btnActionVideo(_ sender: AnyObject) {
-        
-        if player?.timeControlStatus == AVPlayerTimeControlStatus.playing
-        {
+        if player?.timeControlStatus == AVPlayerTimeControlStatus.playing {
             player?.pause()
-        }else{
+        } else {
             player?.play()
         }
-        
-        
     }
     
-
     @IBAction func btnBack(_ sender: AnyObject) {
-        if stepCurrent!-1 >= 0
+        if stepCurrent - 1 >= 0
         {
-            stepCurrent=stepCurrent!-1
-            
-            labelDescricaoVideo.text = steps?[stepCurrent!].text
-            
-            player?.pause()
-            player = AVPlayer(url: URL(string: (steps?[stepCurrent!].videoURL)!)!)
-            player?.play()
-            
-            counter=stepCurrent!
-            
+            stepCurrent = stepCurrent - 1
         }
     }
 
     @IBAction func btnNext(_ sender: AnyObject) {
-        if stepCurrent!+1 < (steps?.count)!
+        if stepCurrent + 1 < (steps?.count ?? 0)
         {
-            stepCurrent=stepCurrent!+1
-            
-           labelDescricaoVideo.text = steps?[stepCurrent!].text
-            
-            player?.pause()
-            player = AVPlayer(url: URL(string: (steps?[stepCurrent!].videoURL)!)!)
-            player?.play()
-            
-            counter=stepCurrent!
+            stepCurrent = stepCurrent + 1
         }
     }
-
 }
