@@ -47,7 +47,5 @@ class DesignableImageView: UIImageView {
         } else {
             layer.cornerRadius = 0;
         }
-        
     }
-
 }

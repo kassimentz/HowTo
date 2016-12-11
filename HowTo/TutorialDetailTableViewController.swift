@@ -22,23 +22,27 @@ class TutorialDetailTableViewController: UITableViewController {
     
     func loadData() {
         
-        DataManager.fetchUserForTutorial(tutorial: tutorial!, completionHandler: { (success, user) in
-            if success {
-                self.tutorial?.user = user
-                self.tableView.reloadData()
-            }
-        })
+        if tutorial?.user == nil {
+            DataManager.fetchUserForTutorial(tutorial: tutorial!, completionHandler: { (success, user) in
+                if success {
+                    self.tutorial?.user = user
+                    self.tableView.reloadData()
+                }
+            })
+        }
         
-        //TODO: show loading overlay
-        DataManager.fetchStepsForTutorial(tutorial: tutorial!, completionHandler: { (success, steps) in
-            //TODO: hide loading overlay
-            if success {
-                self.tutorial?.steps = steps
-                self.tableView.reloadData()
-            } else {
-                //TODO: show error
-            }
-        })
+        if tutorial?.steps == nil {
+            //TODO: show loading overlay
+            DataManager.fetchStepsForTutorial(tutorial: tutorial!, completionHandler: { (success, steps) in
+                //TODO: hide loading overlay
+                if success {
+                    self.tutorial?.steps = steps
+                    self.tableView.reloadData()
+                } else {
+                    //TODO: show error
+                }
+            })
+        }
     }
 
     // MARK: - TableView

@@ -29,9 +29,7 @@ class MyTutorialsTableViewController: UITableViewController {
 //        searchController.dimsBackgroundDuringPresentation = false
 //        tableView.tableHeaderView = searchController.searchBar
         
-        
-        self.title = "Meus Tutoriais"
-        
+                
         populateMyTutorialsList()
         
     }
