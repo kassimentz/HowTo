@@ -61,10 +61,11 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
                     let urlOfVideo = info[UIImagePickerControllerMediaURL] as? URL
                     if let url = urlOfVideo {
                         // 2
-                        //create a step model object using this url. 
-                        // TODO waiting for db insert to uncomment this
-                        //var step = Steps(text: StepDescriptionTextField.text!, videoURL: url);
-                        //step.createRecord();
+                        
+                        //create a step model object using this url.
+                        let step1 = Steps();
+                        step1.text = StepDescriptionTextField.text!
+                        step1.URL = url
                         
                         assetsLibrary.writeVideoAtPath(toSavedPhotosAlbum: url,
                                                        completionBlock: {(url: URL?, error: Error?) in

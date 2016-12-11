@@ -13,14 +13,10 @@ class Steps: NSObject {
     
     var recordIdentifier:CKRecordID?
     var text:String?
-    var videoURL:URL?
+    var videoURL:String?
     var image:UIImage?
     var order:Int = 0
-    
-    init(text:String, videoURL:URL) {
-        self.text = text as String
-        self.videoURL = videoURL as URL
-    }
+    var URL = URL?
     
     func createRecord() -> CKRecord {
         let record = CKRecord(recordType: "Steps")
