@@ -10,7 +10,7 @@ import UIKit
 import MobileCoreServices
 import AssetsLibrary
 
-class NewStepViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate  {
+class NewStepViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate  {
 
     var controller = UIImagePickerController()
     var assetsLibrary = ALAssetsLibrary()
@@ -18,7 +18,8 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var stepDescriptionText: UITextView!
     @IBOutlet weak var SaveStepButton: UIButton!
     
-    @IBAction func recordVideo(_ sender: Any) {
+    
+    func recordVideo(_ sender: Any) {
         
         // 1 Check if project runs on a device with camera available
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -37,7 +38,8 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
         }
     }
     
-    @IBAction func viewLibrary(_ sender: Any) {
+    
+    func viewLibrary(_ sender: Any) {
         // Display Photo Library
         controller.sourceType = UIImagePickerControllerSourceType.photoLibrary
         controller.mediaTypes = [kUTTypeMovie as String]
@@ -49,6 +51,25 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround() 
+    }
+    
+    @IBAction func showActionSheetButton(_ sender: Any) {
+        let alert = UIAlertController(title: "Adicionando Vídeo", message: "Por favor, selecione uma opção", preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Filmar Vídeo", style: .default , handler:{ (UIAlertAction)in
+            print("filmar video")
+            self.recordVideo(sender)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Escolher da Galeria", style: .default , handler:{ (UIAlertAction)in
+            print("escolher da galeria")
+            self.viewLibrary(sender)
+        }))
+        
+        self.present(alert, animated: true, completion: {
+            print("completion block")
+        })
+        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
