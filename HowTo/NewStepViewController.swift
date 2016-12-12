@@ -9,14 +9,18 @@
 import UIKit
 import MobileCoreServices
 import AssetsLibrary
+import AVKit
+import AVFoundation
 
 class NewStepViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate  {
 
     var controller = UIImagePickerController()
     var assetsLibrary = ALAssetsLibrary()
+    var player:AVPlayer?
     
     @IBOutlet weak var stepDescriptionText: UITextView!
     @IBOutlet weak var SaveStepButton: UIButton!
+    @IBOutlet weak var videoView: UIView!
     
     
     func recordVideo(_ sender: Any) {
@@ -72,6 +76,33 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
         
     }
     
+    func loadVideo(_ url: URL) {
+        
+        player = AVPlayer(url: url)
+        
+        let blurPlayerLayer = AVPlayerLayer(player: player)
+        blurPlayerLayer.frame = videoView.bounds
+        blurPlayerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        
+        videoView.layer.addSublayer(blurPlayerLayer)
+        
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.dark)) as UIVisualEffectView
+        visualEffectView.frame = videoView.bounds
+        videoView.addSubview(visualEffectView)
+        
+        let playerLayer = AVPlayerLayer(player: player)
+        playerLayer.frame = videoView.bounds
+        videoView.layer.addSublayer(playerLayer)
+        
+        player?.play()
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil, queue: nil) { notification in
+            self.player?.seek(to: kCMTimeZero)
+            self.player?.play()
+        }
+        
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         // 1
         let mediaType:AnyObject? = info[UIImagePickerControllerMediaType] as AnyObject?
@@ -88,6 +119,7 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
                         let step1 = Steps();
                         step1.text = stepDescriptionText.text!
                         step1.videoURL = url
+                        loadVideo(url)
                         
                         assetsLibrary.writeVideoAtPath(toSavedPhotosAlbum: url,
                                                        completionBlock: {(url: URL?, error: Error?) in
@@ -112,6 +144,8 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
