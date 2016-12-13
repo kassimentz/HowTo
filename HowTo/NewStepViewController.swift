@@ -22,6 +22,12 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var SaveStepButton: UIButton!
     @IBOutlet weak var videoView: UIView!
     
+    // MARK - View Lifecycle
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        player?.pause()
+    }
+    
     
     func recordVideo(_ sender: Any) {
         
@@ -75,6 +81,15 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
         })
         
     }
+    
+    @IBAction func stopPlayButton(_ sender: Any) {
+        if player?.timeControlStatus == AVPlayerTimeControlStatus.playing {
+            player?.pause()
+        } else {
+            player?.play()
+        }
+    }
+    
     
     func loadVideo(_ url: URL) {
         
