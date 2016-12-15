@@ -26,6 +26,8 @@
 		CB6CE50D1DF3449D00A34526 /* MyTutorialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CE50C1DF3449D00A34526 /* MyTutorialTableViewCell.swift */; };
 		CB6CE50F1DF34A0C00A34526 /* MyTutorialsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CE50E1DF34A0C00A34526 /* MyTutorialsTableViewController.swift */; };
 		CBAC85011DEA022500B36864 /* TutorialsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAC85001DEA022500B36864 /* TutorialsListTableViewController.swift */; };
+		D03E66E81DFC878D00F977C6 /* MyTutorialDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03E66E71DFC878D00F977C6 /* MyTutorialDetailTableViewController.swift */; };
+		D08128551E019F2B001B1216 /* MyTutorialDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08128541E019F2B001B1216 /* MyTutorialDetailTableViewCell.swift */; };
 		D086B9DA1DF331D100F42EB0 /* StepDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086B9D91DF331D100F42EB0 /* StepDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +75,8 @@
 		CB6CE50C1DF3449D00A34526 /* MyTutorialTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTutorialTableViewCell.swift; sourceTree = "<group>"; };
 		CB6CE50E1DF34A0C00A34526 /* MyTutorialsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTutorialsTableViewController.swift; sourceTree = "<group>"; };
 		CBAC85001DEA022500B36864 /* TutorialsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialsListTableViewController.swift; sourceTree = "<group>"; };
+		D03E66E71DFC878D00F977C6 /* MyTutorialDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTutorialDetailTableViewController.swift; sourceTree = "<group>"; };
+		D08128541E019F2B001B1216 /* MyTutorialDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTutorialDetailTableViewCell.swift; sourceTree = "<group>"; };
 		D086B9D91DF331D100F42EB0 /* StepDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -183,6 +187,7 @@
 				CBAC85001DEA022500B36864 /* TutorialsListTableViewController.swift */,
 				CB6CE4FC1DF2F9D300A34526 /* TutorialDetailTableViewController.swift */,
 				CB6CE50E1DF34A0C00A34526 /* MyTutorialsTableViewController.swift */,
+				D03E66E71DFC878D00F977C6 /* MyTutorialDetailTableViewController.swift */,
 				D086B9DC1DF33D4300F42EB0 /* Cell */,
 			);
 			name = App;
@@ -195,6 +200,7 @@
 				CB6CE4FA1DF2F3A900A34526 /* TutorialCellTableViewCell.swift */,
 				CB6CE4FE1DF3030F00A34526 /* TutorialDetailTableViewCell.swift */,
 				CB6CE50C1DF3449D00A34526 /* MyTutorialTableViewCell.swift */,
+				D08128541E019F2B001B1216 /* MyTutorialDetailTableViewCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -262,12 +268,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = HowTo;
 				TargetAttributes = {
 					C299773D1DE0CA3F008E7F7A = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = LQ3A5NNGQE;
+						DevelopmentTeam = QPY9EL8ZLJ;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.iCloud = {
@@ -345,6 +351,7 @@
 				CB6CE4FD1DF2F9D300A34526 /* TutorialDetailTableViewController.swift in Sources */,
 				CB47BD541DFC315B001F6611 /* NewStepViewController.swift in Sources */,
 				C724AF3C1DE9FC6200E7D6A4 /* Tutorial.swift in Sources */,
+				D03E66E81DFC878D00F977C6 /* MyTutorialDetailTableViewController.swift in Sources */,
 				CB6CE4FB1DF2F3A900A34526 /* TutorialCellTableViewCell.swift in Sources */,
 				CB6CE5091DF339FE00A34526 /* StepsTableViewCell.swift in Sources */,
 				CB6CE50B1DF33A5500A34526 /* User.swift in Sources */,
@@ -352,6 +359,7 @@
 				D086B9DA1DF331D100F42EB0 /* StepDetailViewController.swift in Sources */,
 				C29977421DE0CA40008E7F7A /* AppDelegate.swift in Sources */,
 				CB6CE50D1DF3449D00A34526 /* MyTutorialTableViewCell.swift in Sources */,
+				D08128551E019F2B001B1216 /* MyTutorialDetailTableViewCell.swift in Sources */,
 				CB6CE50F1DF34A0C00A34526 /* MyTutorialsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,6 +433,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -475,6 +484,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -505,7 +515,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HowTo/HowTo.entitlements;
-				DEVELOPMENT_TEAM = LQ3A5NNGQE;
+				DEVELOPMENT_TEAM = QPY9EL8ZLJ;
 				INFOPLIST_FILE = HowTo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.howto.HowTo;
@@ -519,7 +529,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HowTo/HowTo.entitlements;
-				DEVELOPMENT_TEAM = LQ3A5NNGQE;
+				DEVELOPMENT_TEAM = QPY9EL8ZLJ;
 				INFOPLIST_FILE = HowTo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.howto.HowTo;
