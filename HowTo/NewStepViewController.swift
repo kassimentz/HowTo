@@ -9,16 +9,27 @@
 import UIKit
 import MobileCoreServices
 import AssetsLibrary
+import AVKit
+import AVFoundation
 
-class NewStepViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate  {
+class NewStepViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate  {
 
     var controller = UIImagePickerController()
     var assetsLibrary = ALAssetsLibrary()
+    var player:AVPlayer?
     
     @IBOutlet weak var stepDescriptionText: UITextView!
     @IBOutlet weak var SaveStepButton: UIButton!
+    @IBOutlet weak var videoView: UIView!
     
-    @IBAction func recordVideo(_ sender: Any) {
+    // MARK - View Lifecycle
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        player?.pause()
+    }
+    
+    
+    func recordVideo(_ sender: Any) {
         
         // 1 Check if project runs on a device with camera available
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -37,7 +48,8 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
         }
     }
     
-    @IBAction func viewLibrary(_ sender: Any) {
+    
+    func viewLibrary(_ sender: Any) {
         // Display Photo Library
         controller.sourceType = UIImagePickerControllerSourceType.photoLibrary
         controller.mediaTypes = [kUTTypeMovie as String]
@@ -49,6 +61,61 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround() 
+    }
+    
+    @IBAction func showActionSheetButton(_ sender: Any) {
+        let alert = UIAlertController(title: "Adicionando Vídeo", message: "Por favor, selecione uma opção", preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Filmar Vídeo", style: .default , handler:{ (UIAlertAction)in
+            print("filmar video")
+            self.recordVideo(sender)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Escolher da Galeria", style: .default , handler:{ (UIAlertAction)in
+            print("escolher da galeria")
+            self.viewLibrary(sender)
+        }))
+        
+        self.present(alert, animated: true, completion: {
+            print("completion block")
+        })
+        
+    }
+    
+    @IBAction func stopPlayButton(_ sender: Any) {
+        if player?.timeControlStatus == AVPlayerTimeControlStatus.playing {
+            player?.pause()
+        } else {
+            player?.play()
+        }
+    }
+    
+    
+    func loadVideo(_ url: URL) {
+        
+        player = AVPlayer(url: url)
+        
+        let blurPlayerLayer = AVPlayerLayer(player: player)
+        blurPlayerLayer.frame = videoView.bounds
+        blurPlayerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        
+        videoView.layer.addSublayer(blurPlayerLayer)
+        
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.dark)) as UIVisualEffectView
+        visualEffectView.frame = videoView.bounds
+        videoView.addSubview(visualEffectView)
+        
+        let playerLayer = AVPlayerLayer(player: player)
+        playerLayer.frame = videoView.bounds
+        videoView.layer.addSublayer(playerLayer)
+        
+        player?.play()
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil, queue: nil) { notification in
+            self.player?.seek(to: kCMTimeZero)
+            self.player?.play()
+        }
+        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -67,6 +134,7 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
                         let step1 = Steps();
                         step1.text = stepDescriptionText.text!
                         step1.videoURL = url
+                        loadVideo(url)
                         
                         assetsLibrary.writeVideoAtPath(toSavedPhotosAlbum: url,
                                                        completionBlock: {(url: URL?, error: Error?) in
@@ -91,6 +159,8 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
