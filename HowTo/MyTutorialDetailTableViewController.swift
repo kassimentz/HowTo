@@ -118,15 +118,21 @@ class MyTutorialDetailTableViewController: UITableViewController, UIImagePickerC
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "showNovoPasso" {
+            let stepDetail = segue.destination as! NewStepViewController
+            if let step = sender as? Steps {
+                stepDetail.StepDescriptionTextField.text  = step.text
+            }
+        }
     }
-    */
+ 
+    
     @IBAction func cameraButtonAction(_ sender: UIButton) {
         
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera){
@@ -164,6 +170,10 @@ class MyTutorialDetailTableViewController: UITableViewController, UIImagePickerC
         
     }
     
+    
+    @IBAction func novoPassoButtonAction(_ sender: UIButton) {
+        performSegue(withIdentifier: "showNovoPasso", sender: sender)
+    }
 
     
 }
