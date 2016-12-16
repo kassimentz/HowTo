@@ -83,6 +83,11 @@ class MyTutorialsTableViewController: UITableViewController {
         performSegue(withIdentifier: "showMyTutorialDetail", sender: tutorial)
     }
     
+    @IBAction func newTutorial(_ sender: AnyObject) {
+        performSegue(withIdentifier: "showMyTutorialDetail", sender: sender)
+    }
+    
+    
 //    func filterContentForSearchText(_ searchText: String) {
 //        filteredTutorials = tutorials.filter({( tutorial : Tutorial) -> Bool in
 //            return (tutorial.title?.lowercased().contains(searchText.lowercased()))!
@@ -105,7 +110,7 @@ class MyTutorialsTableViewController: UITableViewController {
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     // Usar quando a tableViewController de MyTutorial Detalhes estiver pronta
-    /*
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
@@ -116,6 +121,6 @@ class MyTutorialsTableViewController: UITableViewController {
             }
         }
     }
-     */
+ 
 
 }
