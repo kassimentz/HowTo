@@ -11,11 +11,17 @@ import CloudKit
 
 class User: NSObject {
     
+    var recordID:CKRecordID?
     var name:String?
     var image:UIImage?
     
+    var username:String?
+    var password:String?
+    
     init(record:CKRecord) {
         super.init()
+        
+        self.recordID = record.recordID
         self.name = record["name"]! as? String
         
         let asset:CKAsset = record["image"]! as! CKAsset

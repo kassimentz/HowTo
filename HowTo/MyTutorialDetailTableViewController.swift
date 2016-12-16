@@ -15,7 +15,6 @@ class MyTutorialDetailTableViewController: UITableViewController, UIImagePickerC
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
         if tutorial == nil {
             self.title = "Novo Tutoriais"

@@ -15,6 +15,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        Singleton.sharedInstance.isLoggingIn = true
+        DataManager.loginUser(username: "alicewiener@gmail.com", password: "test", completionHandler: { (success, user) in
+            Singleton.sharedInstance.isLoggingIn = false
+            Singleton.sharedInstance.currentUser = user
+        })
+        
         return true
     }
 

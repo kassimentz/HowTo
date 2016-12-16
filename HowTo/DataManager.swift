@@ -46,6 +46,35 @@ class DataManager: NSObject {
         OperationQueue().addOperation(uploadOperation)
     }
     
+    class func fetchTutorialsForUser(user:User, completionHandler: @escaping (_ success:Bool, _ tutorials:[Tutorial]) -> Void) {
+        
+        var predicate = NSPredicate()
+        if let recordID = user.recordID {
+            let userReference:CKReference = CKReference(recordID: recordID, action: .none)
+            predicate = NSPredicate(format: "user == %@", argumentArray:[userReference])
+        }
+        
+        let sort = NSSortDescriptor(key: "creationDate", ascending: false)
+        let query = CKQuery(recordType: "Tutorials", predicate: predicate)
+        query.sortDescriptors = [sort]
+        
+        CKContainer.default().publicCloudDatabase.perform(query, inZoneWith: nil) { results, error in
+            DispatchQueue.main.async(){
+                
+                if error != nil {
+                    print(error ?? "")
+                }
+                
+                var tutorials = [Tutorial]()
+                for result in results! {
+                    tutorials.append(Tutorial(record: result))
+                }
+                
+                completionHandler(error == nil, tutorials)
+            }
+        }
+    }
+    
     class func fetchTutorials(completionHandler: @escaping (_ success:Bool, _ tutorials:[Tutorial]) -> Void) {
         
         let predicate = NSPredicate(value: true)
@@ -82,6 +111,23 @@ class DataManager: NSObject {
             })
         } else {
             completionHandler(false, nil)
+        }
+    }
+    
+    class func loginUser(username:String, password:String, completionHandler: @escaping (_ success:Bool, _ user:User?) -> Void) {
+        
+        CKContainer.default().fetchUserRecordID { (recordID, error) in
+            if error != nil {
+                print(error ?? "")
+            } else {
+                CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID!, completionHandler: { (record, error) in
+                    if record != nil {
+                        completionHandler(error == nil, User(record:record!))
+                    } else {
+                        completionHandler(false, nil)
+                    }
+                })
+            }
         }
     }
     
