@@ -248,7 +248,7 @@
                                         <rect key="frame" x="0.0" y="72" width="320" height="209"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NUg-ZY-mOz" id="xtF-Ry-uJd">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="209"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="208"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video-tutorial" translatesAutoresizingMaskIntoConstraints="NO" id="Eij-qM-wDd">
@@ -351,7 +351,7 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="494"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WKC-5z-7Qh" id="7Xm-pC-bhq">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="494"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="493"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="90N-lo-JDC">
@@ -475,7 +475,7 @@
                                 <rect key="frame" x="0.0" y="522" width="320" height="103"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MBs-Sb-W5x" id="42T-ku-9v5">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="103"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gXx-1a-XRe">
