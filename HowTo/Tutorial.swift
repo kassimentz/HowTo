@@ -11,12 +11,13 @@ import CloudKit
 
 class Tutorial: NSObject {
     
-    var recordIdentifier:CKRecordID?
+    var recordID:CKRecordID?
     var title:String?
     var textDescription:String?
     var image:UIImage?
     var steps:[Steps]?
     var user: User?
+    var userReference: CKReference?
     
     init(title:String, textDescription:String, image:UIImage){
         self.title = title as String
@@ -26,8 +27,9 @@ class Tutorial: NSObject {
     
     init(record:CKRecord) {
         super.init()
-        self.recordIdentifier = record.recordID
+        self.recordID = record.recordID
         self.title = record["title"]! as? String
+        self.userReference = record["user"]! as? CKReference
         
         if let description = record["textDescription"] {
             self.textDescription = description as? String

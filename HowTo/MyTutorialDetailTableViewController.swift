@@ -125,17 +125,6 @@ class MyTutorialDetailTableViewController: UITableViewController, UIImagePickerC
 
     
     // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        if segue.identifier == "showNovoPasso" {
-            let stepDetail = segue.destination as! NewStepViewController
-            if let step = sender as? Steps {
-                stepDetail.StepDescriptionTextField.text  = step.text
-            }
-        }
-    }
  
     
     @IBAction func cameraButtonAction(_ sender: UIButton) {

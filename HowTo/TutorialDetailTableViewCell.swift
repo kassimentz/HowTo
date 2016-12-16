@@ -15,6 +15,4 @@ class TutorialDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var titleTutorialDetail: UILabel!
     @IBOutlet weak var descriptionTutorialDetail: UILabel!
     
-    
-
 }

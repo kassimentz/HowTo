@@ -30,9 +30,11 @@
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>NSCameraUsageDescription</key>
-	<string>To take photo.</string>
+	<string>Allow Access to Camera</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Allow Access to Microphone</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>To show you photo.</string>
+	<string>Allow Access to Library</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
