@@ -16,18 +16,32 @@ class MyTutorialsTableViewController: UIViewController, UITableViewDataSource, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        styleTableView()
+        fetchData()
+    }
+    
+    // MARK: - Style
+    
+    func styleTableView() {
+        tableView.estimatedRowHeight = 200
+        tableView.separatorInset = UIEdgeInsets.zero
+        tableView.tableFooterView = UIView()
+    }
+    
+    // MARK: - Fetch Data
+    
+    func fetchData() {
         if Singleton.sharedInstance.isLoggingIn == true {
             //TODO: show loading overlay
             NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "DidChangeCurrentUser"), object: nil, queue: nil) { notification in
-                self.getUserTutorials()
+                self.fetchUserTutorials()
             }
         } else {
-            self.getUserTutorials()
+            self.fetchUserTutorials()
         }
     }
     
-    func getUserTutorials() {
+    func fetchUserTutorials() {
         
         //TODO: show loading overlay
         

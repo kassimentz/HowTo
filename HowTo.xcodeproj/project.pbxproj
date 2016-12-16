@@ -13,7 +13,7 @@
 		C299774C1DE0CA40008E7F7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C299774A1DE0CA40008E7F7A /* LaunchScreen.storyboard */; };
 		C29977571DE0CA40008E7F7A /* HowToTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29977561DE0CA40008E7F7A /* HowToTests.swift */; };
 		C29977621DE0CA40008E7F7A /* HowToUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29977611DE0CA40008E7F7A /* HowToUITests.swift */; };
-		C724AF3B1DE9FC6200E7D6A4 /* Steps.swift in Sources */ = {isa = PBXBuildFile; fileRef = C724AF391DE9FC6200E7D6A4 /* Steps.swift */; };
+		C724AF3B1DE9FC6200E7D6A4 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = C724AF391DE9FC6200E7D6A4 /* Step.swift */; };
 		C724AF3C1DE9FC6200E7D6A4 /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = C724AF3A1DE9FC6200E7D6A4 /* Tutorial.swift */; };
 		C72506621DF3446900160463 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72506611DF3446900160463 /* DataManager.swift */; };
 		C735D2571DFCB0BF00622EB9 /* DesignableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C735D2561DFCB0BF00622EB9 /* DesignableImageView.swift */; };
@@ -64,7 +64,7 @@
 		C29977611DE0CA40008E7F7A /* HowToUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToUITests.swift; sourceTree = "<group>"; };
 		C29977631DE0CA40008E7F7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C724AF341DE9FC2B00E7D6A4 /* HowTo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HowTo.entitlements; sourceTree = "<group>"; };
-		C724AF391DE9FC6200E7D6A4 /* Steps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Steps.swift; sourceTree = "<group>"; };
+		C724AF391DE9FC6200E7D6A4 /* Step.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
 		C724AF3A1DE9FC6200E7D6A4 /* Tutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutorial.swift; sourceTree = "<group>"; };
 		C72506611DF3446900160463 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		C735D2561DFCB0BF00622EB9 /* DesignableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableImageView.swift; sourceTree = "<group>"; };
@@ -176,7 +176,7 @@
 		C724AF381DE9FC5100E7D6A4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C724AF391DE9FC6200E7D6A4 /* Steps.swift */,
+				C724AF391DE9FC6200E7D6A4 /* Step.swift */,
 				C724AF3A1DE9FC6200E7D6A4 /* Tutorial.swift */,
 				CB6CE50A1DF33A5500A34526 /* User.swift */,
 				C72506611DF3446900160463 /* DataManager.swift */,
@@ -359,7 +359,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C724AF3B1DE9FC6200E7D6A4 /* Steps.swift in Sources */,
+				C724AF3B1DE9FC6200E7D6A4 /* Step.swift in Sources */,
 				C735D2651E038B1900622EB9 /* Singleton.swift in Sources */,
 				C735D2571DFCB0BF00622EB9 /* DesignableImageView.swift in Sources */,
 				CBAC85011DEA022500B36864 /* TutorialsListTableViewController.swift in Sources */,

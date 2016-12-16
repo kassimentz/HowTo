@@ -131,7 +131,7 @@ class DataManager: NSObject {
         }
     }
     
-    class func fetchStepsForTutorial(tutorial:Tutorial, completionHandler: @escaping (_ success:Bool, _ steps:[Steps]) -> Void) {
+    class func fetchStepsForTutorial(tutorial:Tutorial, completionHandler: @escaping (_ success:Bool, _ steps:[Step]) -> Void) {
         
         var predicate = NSPredicate()
         if let recordID = tutorial.recordID {
@@ -149,9 +149,9 @@ class DataManager: NSObject {
                     print(error ?? "")
                 }
                 
-                var steps = [Steps]()
+                var steps = [Step]()
                 for result in results! {
-                    steps.append(Steps(record: result))
+                    steps.append(Step(record: result))
                 }
                 
                 completionHandler(error == nil, steps)

@@ -1,5 +1,5 @@
 //
-//  Steps.swift
+//  Step.swift
 //  HowTo
 //
 //  Created by Alice Wiener on 26/11/16.
@@ -10,7 +10,7 @@ import UIKit
 import CloudKit
 import AVFoundation
 
-class Steps: NSObject {
+class Step: NSObject {
     
     var recordID:CKRecordID?
     var text:String?

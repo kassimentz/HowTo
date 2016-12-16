@@ -15,9 +15,11 @@ class Tutorial: NSObject {
     var title:String?
     var textDescription:String?
     var image:UIImage?
-    var steps:[Steps]?
+    var steps:[Step]?
     var user: User?
     var userReference: CKReference?
+    
+    override init() {}
     
     init(title:String, textDescription:String, image:UIImage){
         self.title = title as String

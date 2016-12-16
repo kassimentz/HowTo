@@ -17,6 +17,7 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
     var controller = UIImagePickerController()
     var assetsLibrary = ALAssetsLibrary()
     var player:AVPlayer?
+    var step:Step?
     
     @IBOutlet weak var stepDescriptionText: UITextView!
     @IBOutlet weak var SaveStepButton: UIButton!
@@ -28,9 +29,7 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
         player?.pause()
     }
     
-    
     func recordVideo(_ sender: Any) {
-        
         // 1 Check if project runs on a device with camera available
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             
@@ -48,9 +47,7 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
         }
     }
     
-    
     func viewLibrary(_ sender: Any) {
-        // Display Photo Library
         controller.sourceType = UIImagePickerControllerSourceType.photoLibrary
         controller.mediaTypes = [kUTTypeMovie as String]
         controller.delegate = self
@@ -67,19 +64,15 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
         let alert = UIAlertController(title: "Adicionando Vídeo", message: "Por favor, selecione uma opção", preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Filmar Vídeo", style: .default , handler:{ (UIAlertAction)in
-            print("filmar video")
             self.recordVideo(sender)
         }))
         
         alert.addAction(UIAlertAction(title: "Escolher da Galeria", style: .default , handler:{ (UIAlertAction)in
-            print("escolher da galeria")
             self.viewLibrary(sender)
         }))
         
         self.present(alert, animated: true, completion: {
-            print("completion block")
         })
-        
     }
     
     @IBAction func stopPlayButton(_ sender: Any) {
@@ -89,7 +82,6 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
             player?.play()
         }
     }
-    
     
     func loadVideo(_ url: URL) {
         
@@ -115,11 +107,9 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
             self.player?.seek(to: kCMTimeZero)
             self.player?.play()
         }
-        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        // 1
         let mediaType:AnyObject? = info[UIImagePickerControllerMediaType] as AnyObject?
         
         if let type:AnyObject = mediaType {
@@ -128,10 +118,9 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
                 if stringType == kUTTypeMovie as String {
                     let urlOfVideo = info[UIImagePickerControllerMediaURL] as? URL
                     if let url = urlOfVideo {
-                        // 2
                         
                         //create a step model object using this url.
-                        let step1 = Steps();
+                        let step1 = Step();
                         step1.text = stepDescriptionText.text!
                         step1.videoURL = url
                         loadVideo(url)
@@ -150,21 +139,11 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
                 
             }
         }
-        
-        // 3
         picker.dismiss(animated: true, completion: nil)
     }
-    
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
-    }
-    
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 

@@ -8,166 +8,181 @@
 
 import UIKit
 
-class MyTutorialDetailTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MyTutorialDetailTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, StepsTableViewCellDelegate, MyTutorialDetailTableViewCellDelegate {
 
     var tutorial: Tutorial?
-    var newImage:UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        styleTableView()
         
         if tutorial == nil {
-            self.title = "Novo Tutoriais"
-        
-        
-        }else{
-            self.title = "Tutoriais"
-            
+            tutorial = Tutorial()
+            tutorial?.steps = [Step]()
+            self.title = "Novo Tutorial"
+        } else {
+            self.title = "Editar Tutorial"
+            loadData()
         }
-        
-        tableView.estimatedRowHeight = 200
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+    
+    // MARK: - Style
+    
+    func styleTableView() {
+        tableView.estimatedRowHeight = 200
+        tableView.separatorInset = UIEdgeInsets.zero
+        tableView.separatorColor = UIColor.groupTableViewBackground
+        tableView.tableFooterView = UIView()
+    }
+    
+    // MARK: - Load Data
+    
+    func loadData() {
+        if tutorial?.steps == nil {
+            //TODO: show loading overlay
+            DataManager.fetchStepsForTutorial(tutorial: tutorial!, completionHandler: { (success, steps) in
+                //TODO: hide loading overlay
+                if success {
+                    self.tutorial?.steps = steps
+                    self.tableView.reloadData()
+                } else {
+                    //TODO: show error
+                }
+            })
+        }
+    }
     
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         if section == 0 {
             return 1;
         } else {
-        return tutorial?.steps?.count ?? 0
+            return tutorial?.steps?.count ?? 0
         }
     }
-
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if(indexPath.section == 0){
+        if indexPath.section == 0 {
             let tutorialCell: MyTutorialDetailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "myTutorialDetailCell", for: indexPath) as! MyTutorialDetailTableViewCell
             
             tutorialCell.titleText?.text = tutorial?.title
+            tutorialCell.descricaoText.text = tutorial?.textDescription
             
-            if let image = newImage {
+            if let image = tutorial?.image {
                 tutorialCell.pickedImage.image = image
             }
             
+            tutorialCell.delegate = self
+            
             return tutorialCell
-            
-        }else{
-            
+        } else {
             let stepsCell: StepsTableViewCell = tableView.dequeueReusableCell(withIdentifier: "myStepsTutorialDetailCell", for: indexPath) as! StepsTableViewCell
             
-            let step: Steps
-            step = (tutorial?.steps?[indexPath.row])!
+            let step = (tutorial?.steps?[indexPath.row])!
             
-            stepsCell.stepsTitleDetail?.text = "Passo\(indexPath.row+1)"
+            stepsCell.stepsTitleDetail?.text = "Passo \(indexPath.row+1)"
             stepsCell.stepsDescriptionDetail?.text = step.text
             stepsCell.stepsImageDetail?.image = step.image
             
+            stepsCell.step = step
+            stepsCell.delegate = self
+            
             return stepsCell
         }
-        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "showNovoPasso", sender: nil)
+        if indexPath.section == 1 {
+            let step = (tutorial?.steps?[indexPath.row])!
+            performSegue(withIdentifier: "showNovoPasso", sender: step)
+        }
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    
-    // MARK: - Navigation
+    // MARK: - Actions
  
-    
-    @IBAction func cameraButtonAction(_ sender: UIButton) {
-        
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera){
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerControllerSourceType.camera;
-            imagePicker.allowsEditing = false
-            self.present(imagePicker, animated: true, completion: nil)
-        }
-    }
-    
     @IBAction func galeriaButtonAction(_ sender: UIButton) {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary){
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary;
-            imagePicker.allowsEditing = true
-            self.present(imagePicker, animated: true, completion: nil)
-            
-            
-        }
+        
+        let alert = UIAlertController(title: "Adicionando Foto", message: "Por favor, selecione uma opção", preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Câmera", style: .default , handler:{ (UIAlertAction)in
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera){
+                let imagePicker = UIImagePickerController()
+                imagePicker.delegate = self
+                imagePicker.sourceType = UIImagePickerControllerSourceType.camera;
+                imagePicker.allowsEditing = false
+                self.present(imagePicker, animated: true, completion: nil)
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Galeria", style: .default , handler:{ (UIAlertAction)in
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary){
+                let imagePicker = UIImagePickerController()
+                imagePicker.delegate = self
+                imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary;
+                imagePicker.allowsEditing = true
+                self.present(imagePicker, animated: true, completion: nil)
+            }
+        }))
+        
+        self.present(alert, animated: true, completion: {
+        })
     }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        
-        
-        newImage = image
-        self.dismiss(animated: true, completion: nil)
-        
-        tableView.reloadData()
-        
-    }
-    
     
     @IBAction func salvarButtonAction(_ sender: UIBarButtonItem) {
-        
-        
+        //TODO:Save tutorial
     }
-    
     
     @IBAction func novoPassoButtonAction(_ sender: UIButton) {
         performSegue(withIdentifier: "showNovoPasso", sender: sender)
     }
-
     
+    // MARK: - Picker Controller
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        tutorial?.image = image
+        self.dismiss(animated: true, completion: nil)
+        tableView.reloadData()
+    }
+    
+    // MARK: - StepsTableViewCellDelegate
+    
+    func removeStep(step: Step) {
+        if let index = tutorial?.steps?.index(of: step) {
+            tutorial?.steps?.remove(at: index)
+            tableView.reloadData()
+        }
+    }
+    
+    // MARK: - MyTutorialDetailTableViewCellDelegate
+    
+    func didEdit(title: String) {
+        tutorial?.title = title
+    }
+    
+    func didEdit(description: String) {
+        tutorial?.textDescription = description
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showNovoPasso" {
+            if let viewController:NewStepViewController = segue.destination as? NewStepViewController {
+                if let step:Step = sender as? Step {
+                    viewController.step = step
+                }
+            }
+        }
+    }
+
 }

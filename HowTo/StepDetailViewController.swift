@@ -19,7 +19,7 @@ class StepDetailViewController: UIViewController {
     @IBOutlet weak var nextButtonImage: UIImageView!
 
     var player:AVPlayer?
-    var steps:[Steps]?
+    var steps:[Step]?
     var stepCurrent:Int = 0 {
         didSet {
             updateViews()
