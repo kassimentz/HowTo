@@ -11,7 +11,6 @@ import UIKit
 class MyTutorialDetailTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var tutorial: Tutorial?
-    var steps:[Steps]?
     var newImage:UIImage?
     
     override func viewDidLoad() {
@@ -20,11 +19,11 @@ class MyTutorialDetailTableViewController: UITableViewController, UIImagePickerC
         
         if tutorial == nil {
             self.title = "Novo Tutoriais"
-            steps = [Steps]()
+        
         
         }else{
             self.title = "Tutoriais"
-            steps = tutorial?.steps
+            
         }
         
         tableView.estimatedRowHeight = 200
@@ -49,7 +48,7 @@ class MyTutorialDetailTableViewController: UITableViewController, UIImagePickerC
         if section == 0 {
             return 1;
         } else {
-        return steps!.count
+        return tutorial?.steps?.count ?? 0
         }
     }
 
@@ -72,7 +71,7 @@ class MyTutorialDetailTableViewController: UITableViewController, UIImagePickerC
             let stepsCell: StepsTableViewCell = tableView.dequeueReusableCell(withIdentifier: "myStepsTutorialDetailCell", for: indexPath) as! StepsTableViewCell
             
             let step: Steps
-            step = (steps?[indexPath.row])!
+            step = (tutorial?.steps?[indexPath.row])!
             
             stepsCell.stepsTitleDetail?.text = "Passo\(indexPath.row+1)"
             stepsCell.stepsDescriptionDetail?.text = step.text
@@ -162,6 +161,7 @@ class MyTutorialDetailTableViewController: UITableViewController, UIImagePickerC
     
     
     @IBAction func salvarButtonAction(_ sender: UIBarButtonItem) {
+        
         
     }
     
