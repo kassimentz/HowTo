@@ -12,6 +12,7 @@ class MyTutorialDetailTableViewController: UITableViewController, UIImagePickerC
 
     var tutorial: Tutorial?
     var steps:[Steps]?
+    var newImage:UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +60,10 @@ class MyTutorialDetailTableViewController: UITableViewController, UIImagePickerC
             let tutorialCell: MyTutorialDetailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "myTutorialDetailCell", for: indexPath) as! MyTutorialDetailTableViewCell
             
             tutorialCell.titleText?.text = tutorial?.title
+            
+            if let image = newImage {
+                tutorialCell.pickedImage.image = image
+            }
             
             return tutorialCell
             
@@ -158,10 +163,11 @@ class MyTutorialDetailTableViewController: UITableViewController, UIImagePickerC
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         
-        let tutorialCell = MyTutorialDetailTableViewCell()
         
-        tutorialCell.pickedImage.image = image
+        newImage = image
         self.dismiss(animated: true, completion: nil)
+        
+        tableView.reloadData()
         
     }
     
