@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyTutorialDetailTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, StepsTableViewCellDelegate, MyTutorialDetailTableViewCellDelegate {
+class MyTutorialDetailTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, StepsTableViewCellDelegate, MyTutorialDetailTableViewCellDelegate, NewStepViewControllerDelegate {
 
     var tutorial: Tutorial?
     
@@ -173,6 +173,13 @@ class MyTutorialDetailTableViewController: UITableViewController, UIImagePickerC
         tutorial?.textDescription = description
     }
     
+    // MARK: - NewStepViewControllerDelegate
+    
+    func didAdd(step: Step) {
+        tutorial?.steps?.append(step)
+        tableView.reloadData()
+    }
+    
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -181,6 +188,7 @@ class MyTutorialDetailTableViewController: UITableViewController, UIImagePickerC
                 if let step:Step = sender as? Step {
                     viewController.step = step
                 }
+                viewController.delegate = self
             }
         }
     }

@@ -12,15 +12,19 @@ import AssetsLibrary
 import AVKit
 import AVFoundation
 
+protocol NewStepViewControllerDelegate:class {
+    func didAdd(step:Step)
+}
+
 class NewStepViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate  {
 
     var controller = UIImagePickerController()
     var assetsLibrary = ALAssetsLibrary()
     var player:AVPlayer?
     var step:Step?
+    weak var delegate: NewStepViewControllerDelegate!
     
     @IBOutlet weak var stepDescriptionText: UITextView!
-    @IBOutlet weak var SaveStepButton: UIButton!
     @IBOutlet weak var videoView: UIView!
     
     // MARK - View Lifecycle
@@ -144,6 +148,16 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func didTapSaveButton(_ sender: Any) {
+        if (step == nil) {
+            step = Step()
+        }
+        
+        step?.text = stepDescriptionText.text
+        delegate.didAdd(step: step!)
+        self.navigationController?.popViewController(animated: true)
     }
 }
 
