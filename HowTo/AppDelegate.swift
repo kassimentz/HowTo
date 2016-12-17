@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import Google
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -20,11 +22,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DataManager.loginUser(username: "alicewiener@gmail.com", password: "test", completionHandler: { (success, user) in
             Singleton.sharedInstance.isLoggingIn = false
             Singleton.sharedInstance.currentUser = user
+            
         })
         
         return true
     }
 
+//    class func setupGoogleAnalytics() {
+//       
+//        // Configure tracker from GoogleService-Info.plist.
+//        NSError *configureError;
+//        [[GGLContext sharedInstance] configureWithError:&configureError];
+//        NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
+//        
+//        // Optional: configure GAI options.
+//        GAI *gai = [GAI sharedInstance];
+//        gai.trackUncaughtExceptions = YES;  // report uncaught exceptions
+//        gai.logger.logLevel = kGAILogLevelVerbose;  // remove before app release
+//        AppDelegate.m
+//    }
+//    
+//    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+//        AppDelegate.setupGoogleAnalytics()
+//        return true
+//    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -47,6 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    
 
 }
 
