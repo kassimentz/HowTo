@@ -8,9 +8,20 @@
 
 import UIKit
 
+protocol MyTutorialDetailTableViewControllerDelegate:class {
+    func didAdd(tutorial:Tutorial)
+    func didEdit(tutorial:Tutorial)
+}
+
 class MyTutorialDetailTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, StepsTableViewCellDelegate, MyTutorialDetailTableViewCellDelegate, NewStepViewControllerDelegate {
 
     var tutorial: Tutorial?
+    var isEditingTutorial: Bool = false
+    var currentTextView:UITextView?
+    
+    weak var delegate: MyTutorialDetailTableViewControllerDelegate?
+    
+    @IBOutlet weak var activeText: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,14 +99,14 @@ class MyTutorialDetailTableViewController: UITableViewController, UIImagePickerC
         } else {
             let stepsCell: StepsTableViewCell = tableView.dequeueReusableCell(withIdentifier: "myStepsTutorialDetailCell", for: indexPath) as! StepsTableViewCell
             
-            let step = (tutorial?.steps?[indexPath.row])!
-            
-            stepsCell.stepsTitleDetail?.text = "Passo \(indexPath.row+1)"
-            stepsCell.stepsDescriptionDetail?.text = step.text
-            stepsCell.stepsImageDetail?.image = step.image
-            
-            stepsCell.step = step
-            stepsCell.delegate = self
+            if let step = tutorial?.steps?[indexPath.row] {
+                stepsCell.stepsTitleDetail?.text = "Passo \(indexPath.row+1)"
+                stepsCell.stepsDescriptionDetail?.text = step.text
+                stepsCell.stepsImageDetail?.image = step.image
+                
+                stepsCell.step = step
+                stepsCell.delegate = self
+            }
             
             return stepsCell
         }
@@ -112,7 +123,7 @@ class MyTutorialDetailTableViewController: UITableViewController, UIImagePickerC
  
     @IBAction func galeriaButtonAction(_ sender: UIButton) {
         
-        let alert = UIAlertController(title: "Adicionando Foto", message: "Por favor, selecione uma opção", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "Adicionar Foto", message: "Por favor, selecione uma opção", preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Câmera", style: .default , handler:{ (UIAlertAction)in
             if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera){
@@ -134,12 +145,31 @@ class MyTutorialDetailTableViewController: UITableViewController, UIImagePickerC
             }
         }))
         
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (UIAlertAction) in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        
         self.present(alert, animated: true, completion: {
         })
     }
     
     @IBAction func salvarButtonAction(_ sender: UIBarButtonItem) {
-        //TODO:Save tutorial
+        //TODO: Show loading overlay
+        if let tut = tutorial {
+            DataManager.save(tutorial: tut) { (result) in
+                //TODO: Hide loading overlay
+                if result == true {
+                    if self.isEditingTutorial == true {
+                        self.delegate?.didEdit(tutorial: tut)
+                    } else {
+                        self.delegate?.didAdd(tutorial: tut)
+                    }
+                    _ = self.navigationController?.popViewController(animated: true)
+                } else {
+                    //TODO:Show error
+                }
+            }
+        }
     }
     
     @IBAction func novoPassoButtonAction(_ sender: UIButton) {
@@ -167,15 +197,18 @@ class MyTutorialDetailTableViewController: UITableViewController, UIImagePickerC
     
     func didEdit(title: String) {
         tutorial?.title = title
+        tableView.reloadData()
     }
     
     func didEdit(description: String) {
         tutorial?.textDescription = description
+        tableView.reloadData()
     }
     
     // MARK: - NewStepViewControllerDelegate
     
     func didAdd(step: Step) {
+        step.order = tutorial?.steps?.count ?? 0
         tutorial?.steps?.append(step)
         tableView.reloadData()
     }

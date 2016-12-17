@@ -11,7 +11,7 @@ import CloudKit
 
 class Tutorial: NSObject {
     
-    var recordID:CKRecordID?
+    var record:CKRecord?
     var title:String?
     var textDescription:String?
     var image:UIImage?
@@ -29,25 +29,43 @@ class Tutorial: NSObject {
     
     init(record:CKRecord) {
         super.init()
-        self.recordID = record.recordID
-        self.title = record["title"]! as? String
-        self.userReference = record["user"]! as? CKReference
+        self.record = record
+        
+        if let title = record["title"] {
+            self.title = title as? String
+        }
+
+        if let user = record["user"] {
+            self.userReference = user as? CKReference
+        }
         
         if let description = record["textDescription"] {
             self.textDescription = description as? String
         }
         
-        let asset:CKAsset = record["image"]! as! CKAsset
-        if let imageData = NSData(contentsOf: asset.fileURL) {
-            self.image = UIImage(data: imageData as Data)
+        if let image = record["image"] {
+            let asset:CKAsset = image as! CKAsset
+            if let imageData = NSData(contentsOf: asset.fileURL) {
+                self.image = UIImage(data: imageData as Data)
+            }
         }
     }
     
     func createRecord() -> CKRecord {
-        let tutorialRecord = CKRecord(recordType: "Tutorials")
-        tutorialRecord["title"] = self.title as CKRecordValue?
-        tutorialRecord["textDescription"] = self.textDescription as CKRecordValue?
-        //TODO: tutorial user reference
+        
+        let tutorialRecord = record != nil ? record! : CKRecord(recordType: "Tutorials")
+        
+        if let title = self.title {
+            tutorialRecord["title"] = title as CKRecordValue?
+        }
+        
+        if let desc = self.textDescription {
+            tutorialRecord["textDescription"] = desc as CKRecordValue?
+        }
+        
+        if let record = Singleton.sharedInstance.currentUser?.record {
+            tutorialRecord["user"] = CKReference(recordID: record.recordID, action: .none)
+        }
         
         if let img = self.image {
             tutorialRecord["image"] = DataManager.asset(image: img)

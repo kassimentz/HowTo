@@ -12,17 +12,32 @@ import AVFoundation
 
 class Step: NSObject {
     
-    var recordID:CKRecordID?
+    var record:CKRecord?
     var text:String?
     var videoURL:URL?
-    var image:UIImage?
+    var image:UIImage? {
+        get {
+            if self.videoURL != nil {
+                let urlAsset = AVURLAsset(url: self.videoURL!, options: nil)
+                let imgGenerator = AVAssetImageGenerator(asset: urlAsset)
+                do {
+                    let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(0, 1), actualTime: nil)
+                    return UIImage(cgImage: cgImage)
+                } catch let error {
+                    print(error)
+                }
+            }
+            
+            return nil
+        }
+    }
     var order:Int = 0
     
     override init() {}
     
     init(record:CKRecord) {
         super.init()
-        self.recordID = record.recordID
+        self.record = record
         self.text = record["text"]! as? String
         self.order = record["order"] as! Int
         
@@ -37,24 +52,24 @@ class Step: NSObject {
             } catch let error {
                 print(error)
             }
-            
-            let urlAsset = AVURLAsset(url: self.videoURL!, options: nil)
-            let imgGenerator = AVAssetImageGenerator(asset: urlAsset)
-            do {
-                let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(0, 1), actualTime: nil)
-                self.image = UIImage(cgImage: cgImage)
-            } catch let error {
-                print(error)
-            }
         }
     }
     
-    func createRecord() -> CKRecord {
-        let record = CKRecord(recordType: "Steps")
-        record["text"] = self.text as CKRecordValue?
-        record["order"] = self.order as CKRecordValue?
-        //TODO: send video
-        return record
+    func createRecord(tutorialID:CKRecordID) -> CKRecord {
+        
+        let stepRecord = record != nil ? record! : CKRecord(recordType: "Steps")
+
+        stepRecord["text"] = self.text as CKRecordValue?
+        stepRecord["order"] = self.order as CKRecordValue?
+        stepRecord["tutorial"] = CKReference(recordID: tutorialID, action: .none)
+        
+        if let videoURL = self.videoURL {
+            stepRecord["video"] = CKAsset(fileURL: videoURL)
+        }
+        
+        return stepRecord
     }
+    
+    
 
 }

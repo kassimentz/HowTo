@@ -11,18 +11,19 @@ import CloudKit
 
 class DataManager: NSObject {
     
-    class func createNew(tutorial:Tutorial, completionHandler: @escaping (_ success:Bool) -> Void) {
+    class func save(tutorial:Tutorial, completionHandler: @escaping (_ success:Bool) -> Void) {
         
         var allRecords = [CKRecord]()
         var stepReferences = [CKReference]()
         
+        let tutorialRecord = tutorial.createRecord()
+        
         for step in tutorial.steps! {
-            let stepRecord = step.createRecord()
+            let stepRecord = step.createRecord(tutorialID:tutorialRecord.recordID)
             allRecords.append(stepRecord)
             stepReferences.append(CKReference(record: stepRecord, action: .none))
         }
         
-        let tutorialRecord = tutorial.createRecord()
         tutorialRecord["steps"] = stepReferences as CKRecordValue?
         
         allRecords.append(tutorialRecord)
@@ -49,8 +50,8 @@ class DataManager: NSObject {
     class func fetchTutorialsForUser(user:User, completionHandler: @escaping (_ success:Bool, _ tutorials:[Tutorial]) -> Void) {
         
         var predicate = NSPredicate()
-        if let recordID = user.recordID {
-            let userReference:CKReference = CKReference(recordID: recordID, action: .none)
+        if let record = user.record {
+            let userReference:CKReference = CKReference(recordID: record.recordID, action: .none)
             predicate = NSPredicate(format: "user == %@", argumentArray:[userReference])
         }
         
@@ -134,8 +135,8 @@ class DataManager: NSObject {
     class func fetchStepsForTutorial(tutorial:Tutorial, completionHandler: @escaping (_ success:Bool, _ steps:[Step]) -> Void) {
         
         var predicate = NSPredicate()
-        if let recordID = tutorial.recordID {
-            let tutorialReference:CKReference = CKReference(recordID: recordID, action: .none)
+        if let record = tutorial.record {
+            let tutorialReference:CKReference = CKReference(recordID: record.recordID, action: .none)
             predicate = NSPredicate(format: "tutorial == %@", argumentArray:[tutorialReference])
         }
         let sort = NSSortDescriptor(key: "order", ascending: true)

@@ -19,13 +19,77 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HowTo/MyTutorialDetailTableViewController.swift"
-            timestampString = "503561605.428206"
+            filePath = "HowTo/Tutorial.swift"
+            timestampString = "503640764.455861"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "loadData()"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "createRecord()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HowTo.Tutorial.createRecord () -&gt; __ObjC.CKRecord"
+                  moduleName = "HowTo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alicewiener/Documents/Workspace/HowTo/HowTo/Tutorial.swift"
+                  timestampString = "503641085.282531"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "328">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HowTo.Tutorial.createRecord () -&gt; __ObjC.CKRecord"
+                  moduleName = "HowTo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alicewiener/Documents/Workspace/HowTo/HowTo/Tutorial.swift"
+                  timestampString = "503641085.284349"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "432">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HowTo/DataManager.swift"
+            timestampString = "503640913.904082"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "save(tutorial:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HowTo/DataManager.swift"
+            timestampString = "503641120.35958"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "save(tutorial:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

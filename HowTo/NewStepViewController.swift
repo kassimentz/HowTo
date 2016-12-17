@@ -22,16 +22,47 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
     var assetsLibrary = ALAssetsLibrary()
     var player:AVPlayer?
     var step:Step?
+    
     weak var delegate: NewStepViewControllerDelegate!
     
     @IBOutlet weak var stepDescriptionText: UITextView!
     @IBOutlet weak var videoView: UIView!
+    @IBOutlet weak var addVideoButton: UIButton!
+    @IBOutlet weak var changeVideo: UIButton!
     
-    // MARK - View Lifecycle
+    // MARK: - View Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if step != nil {
+            stepDescriptionText.text = step?.text
+            if let videoURL = step?.videoURL {
+                loadVideo(videoURL)
+            }
+        }
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
         player?.pause()
     }
+    
+    // MARK: - Keyboard
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    // MARK: - Video
     
     func recordVideo(_ sender: Any) {
         // 1 Check if project runs on a device with camera available
@@ -46,45 +77,13 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
             controller.videoQuality = UIImagePickerControllerQualityType(rawValue: 0)!
             present(controller, animated: true, completion: nil)
         }
-        else {
-            print("Camera is not available")
-        }
     }
     
     func viewLibrary(_ sender: Any) {
         controller.sourceType = UIImagePickerControllerSourceType.photoLibrary
         controller.mediaTypes = [kUTTypeMovie as String]
         controller.delegate = self
-        
         present(controller, animated: true, completion: nil)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.hideKeyboardWhenTappedAround() 
-    }
-    
-    @IBAction func showActionSheetButton(_ sender: Any) {
-        let alert = UIAlertController(title: "Adicionando Vídeo", message: "Por favor, selecione uma opção", preferredStyle: .actionSheet)
-        
-        alert.addAction(UIAlertAction(title: "Filmar Vídeo", style: .default , handler:{ (UIAlertAction)in
-            self.recordVideo(sender)
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Escolher da Galeria", style: .default , handler:{ (UIAlertAction)in
-            self.viewLibrary(sender)
-        }))
-        
-        self.present(alert, animated: true, completion: {
-        })
-    }
-    
-    @IBAction func stopPlayButton(_ sender: Any) {
-        if player?.timeControlStatus == AVPlayerTimeControlStatus.playing {
-            player?.pause()
-        } else {
-            player?.play()
-        }
     }
     
     func loadVideo(_ url: URL) {
@@ -113,6 +112,50 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
         }
     }
     
+    // MARK: - Action
+
+    @IBAction func showActionSheetButton(_ sender: Any) {
+        let alert = UIAlertController(title: "Adicionar Vídeo", message: "Por favor, selecione uma opção", preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Filmar Vídeo", style: .default , handler:{ (UIAlertAction)in
+            self.recordVideo(sender)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Escolher da Galeria", style: .default , handler:{ (UIAlertAction)in
+            self.viewLibrary(sender)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (UIAlertAction) in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        
+        self.present(alert, animated: true, completion:nil)
+    }
+    
+    @IBAction func stopPlayButton(_ sender: Any) {
+        if player?.timeControlStatus == AVPlayerTimeControlStatus.playing {
+            player?.pause()
+        } else {
+            player?.play()
+        }
+    }
+    
+    @IBAction func didTapSaveButton(_ sender: Any) {
+        if (step == nil) {
+            step = Step()
+        }
+        
+        step?.text = stepDescriptionText.text
+        delegate.didAdd(step: step!)
+        _ = self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func didTapChangeButton(_ sender: Any) {
+        showActionSheetButton(sender:sender)
+    }
+    
+    // MARK: - Image Picker
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let mediaType:AnyObject? = info[UIImagePickerControllerMediaType] as AnyObject?
         
@@ -124,18 +167,22 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
                     if let url = urlOfVideo {
                         
                         //create a step model object using this url.
-                        let step1 = Step();
-                        step1.text = stepDescriptionText.text!
-                        step1.videoURL = url
+                        
+                        if step == nil {
+                            step = Step();
+                        }
+                        
+                        changeVideo.isHidden = false;
+                        addVideoButton.isHidden = true;
+                        
+                        step?.text = stepDescriptionText.text!
+                        step?.videoURL = url
                         loadVideo(url)
                         
                         assetsLibrary.writeVideoAtPath(toSavedPhotosAlbum: url,
                                                        completionBlock: {(url: URL?, error: Error?) in
-                                                        if let theError = error{
-                                                            print("Error saving video = \(theError)")
-                                                        }
-                                                        else {
-                                                            print("no errors happened")
+                                                        if error != nil {
+                                                            //TODO:Show Error
                                                         }
                         })
                     }
@@ -149,27 +196,4 @@ class NewStepViewController: UIViewController, UINavigationControllerDelegate, U
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
-    
-    @IBAction func didTapSaveButton(_ sender: Any) {
-        if (step == nil) {
-            step = Step()
-        }
-        
-        step?.text = stepDescriptionText.text
-        delegate.didAdd(step: step!)
-        self.navigationController?.popViewController(animated: true)
-    }
 }
-
-//Extension to hide keyboard. just use hideKeyboardWhenTappedAround
-extension UIViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    }
-    
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
-}
-
