@@ -116,19 +116,19 @@ class DataManager: NSObject {
     
     class func loginUser(username:String, password:String, completionHandler: @escaping (_ success:Bool, _ user:User?) -> Void) {
         
-        CKContainer.default().fetchUserRecordID { (recordID, error) in
-            if error != nil {
-                print(error ?? "")
-            } else {
-                CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID!, completionHandler: { (record, error) in
-                    if record != nil {
-                        completionHandler(error == nil, User(record:record!))
-                    } else {
-                        completionHandler(false, nil)
-                    }
-                })
-            }
-        }
+//        CKContainer.default().fetchUserRecordID { (recordID, error) in
+//            if error != nil {
+//                print(error ?? "")
+//            } else {
+//                CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID!, completionHandler: { (record, error) in
+//                    if record != nil {
+//                        completionHandler(error == nil, User(record:record!))
+//                    } else {
+//                        completionHandler(false, nil)
+//                    }
+//                })
+//            }
+//        }
     }
     
     class func fetchStepsForTutorial(tutorial:Tutorial, completionHandler: @escaping (_ success:Bool, _ steps:[Step]) -> Void) {
