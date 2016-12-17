@@ -18,8 +18,12 @@ class HowToUITests: XCTestCase {
         
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
+        
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
+        
         XCUIApplication().launch()
+        
+        
 
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
@@ -78,5 +82,57 @@ class HowToUITests: XCTestCase {
         button3.tap()
         
     }
+    
+    func testSearch() {
+        
+        if(XCUIApplication().tables.cells.count > 0) {
+            let app = XCUIApplication()
+            let comoFazerPODeQueijoStaticText = app.tables.staticTexts["Como fazer pão de queijo"]
+            comoFazerPODeQueijoStaticText.tap()
+            app.navigationBars["Tutoriais"].buttons["Search"].tap()
+            app.searchFields["Pesquise por tutoriais"].typeText("P")
+            comoFazerPODeQueijoStaticText.tap()
+            
+            let table = app.tables.element(at: 0)
+            let expectedNumberOfElements: UInt = 1
+            XCTAssertEqual(table.cells.count, expectedNumberOfElements)
+        } else {
+            let app = XCUIApplication()
+            let table = app.tables.element(at: 0)
+            XCTAssertEqual(table.cells.count, 0)
+        }
+       
+        
+        
+    }
+    
+//    func testSearch() {
+//        
+//        let app = XCUIApplication()
+//        let tablesQuery = app.tables
+//        let comoFazerDownloadDeUmLivroNaInternetStaticText = tablesQuery.staticTexts["Como fazer download de um livro na internet"]
+//        comoFazerDownloadDeUmLivroNaInternetStaticText.tap()
+//        
+//        let comoFazerPODeQueijoStaticText = tablesQuery.staticTexts["Como fazer pão de queijo"]
+//        comoFazerPODeQueijoStaticText.swipeDown()
+//        comoFazerDownloadDeUmLivroNaInternetStaticText.swipeLeft()
+//        app.navigationBars["Tutoriais"].buttons["Search"].tap()
+//        app.searchFields["Pesquise por tutoriais"].typeText("P")
+//        comoFazerPODeQueijoStaticText.tap()
+//        
+//    }
+    
+//    func testOpenTutorial() {
+//        
+//        let app = XCUIApplication()
+//        let tablesQuery = app.tables
+//        tablesQuery.staticTexts["Como fazer pão de queijo"].tap()
+//        tablesQuery.staticTexts["Passo 2"].tap()
+//        app.navigationBars["Passo 2/3"].buttons[" "].tap()
+//        
+//        
+//    }
+    
+    
     
 }
